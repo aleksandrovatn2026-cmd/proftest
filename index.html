@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПрофТест — Профориентация для подростков</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#13111C;
+  --s1:rgba(255,255,255,0.042);
+  --s2:rgba(255,255,255,0.07);
+  --bd:rgba(255,255,255,0.08);
+  --bd2:rgba(255,255,255,0.16);
+  --text:#F0EEF8;
+  --t2:#9B97B2;
+  --t3:#5C5878;
+  --ac:#8B7FD4;
+  --ac2:#6B5FBD;
+  --acl:rgba(139,127,212,0.13);
+  --lav:#C4BEE8;
+  --ok:#6FCF97;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Manrope,sans-serif;
+  background:radial-gradient(ellipse 90% 55% at 75% -5%,rgba(130,110,220,0.22),transparent 52%),linear-gradient(180deg,#13111C,#181624);
+  background-attachment:fixed;
+  color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(19,17,28,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.logo{font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+.logo span{color:var(--ac)}
+.nav-btn{background:var(--ac);color:#fff;padding:9px 22px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 0 24px rgba(139,127,212,.25)}
+.nav-btn:hover{background:var(--ac2);transform:translateY(-1px);box-shadow:0 0 50px rgba(139,127,212,.35)}
+.hero{max-width:1160px;margin:0 auto;padding:6rem 2rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.badge{display:inline-flex;align-items:center;background:var(--acl);border:1px solid rgba(139,127,212,.22);color:var(--lav);font-size:12px;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:1.75rem;letter-spacing:.03em}
+h1{font-size:clamp(24px,3.8vw,46px);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1.25rem;background:linear-gradient(140deg,#F0EEF8 0%,#C4BEE8 55%,#9080D8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{font-size:16px;color:var(--t2);line-height:1.75;margin-bottom:2rem}
+.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:1rem}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--ac);color:#fff;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:600;text-decoration:none;transition:all .25s;box-shadow:0 0 40px rgba(139,127,212,.28)}
+.btn:hover{background:var(--ac2);transform:translateY(-2px);box-shadow:0 0 60px rgba(139,127,212,.4)}
+.ghost{color:var(--t2);font-size:14px;font-weight:500;text-decoration:none;padding:14px 4px;border-bottom:1px solid transparent;transition:all .2s}
+.ghost:hover{color:var(--text);border-color:var(--ac)}
+.note{font-size:12px;color:var(--t3)}
+.hero-img{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 80px rgba(139,127,212,.14)}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(19,17,28,.38))}
+.proof{text-align:center;padding:1.5rem 2rem;background:rgba(139,127,212,.04);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);font-size:13px;color:var(--t3)}
+.proof strong{color:var(--lav)}
+.sec{padding:6rem 2rem;max-width:960px;margin:0 auto}
+.sec-alt{background:linear-gradient(180deg,rgba(255,255,255,.016),rgba(139,127,212,.035));border-top:1px solid rgba(255,255,255,.042);border-bottom:1px solid rgba(255,255,255,.042)}
+.sec-alt .sec{padding:6rem 2rem}
+.lbl{font-size:11px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;text-align:center}
+.ttl{font-size:clamp(20px,3.2vw,30px);font-weight:700;letter-spacing:-.02em;text-align:center;margin-bottom:.75rem}
+.stl{font-size:15px;color:var(--t2);text-align:center;max-width:500px;margin:0 auto 2.75rem;line-height:1.7}
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:2rem}
+.pain{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.4rem;font-size:14px;color:var(--t2);line-height:1.65;transition:all .3s}
+.pain-q{font-size:28px;color:var(--ac);opacity:.4;display:block;line-height:1;margin-bottom:8px;font-family:Georgia,serif}
+.pain:hover{background:var(--s2);border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 0 40px rgba(139,127,212,.12)}
+.ok-box{background:linear-gradient(135deg,rgba(111,207,151,.07),rgba(139,127,212,.07));border:1px solid rgba(111,207,151,.15);border-radius:16px;padding:1.5rem 2rem;margin-bottom:1.5rem}
+.ok-title{font-size:16px;font-weight:700;color:var(--ok);margin-bottom:8px}
+.ok-text{font-size:14px;color:var(--t2);line-height:1.7}
+.story{background:var(--s1);border:1px solid var(--bd);border-radius:20px;padding:2rem;display:flex;gap:2rem;align-items:flex-start}
+.story-photo-wrap{flex-shrink:0;width:120px;height:120px;border-radius:50%;overflow:hidden;border:2px solid rgba(139,127,212,.35);box-shadow:0 0 40px rgba(139,127,212,.2);cursor:pointer;transition:all .3s;position:relative}
+.story-photo-wrap:hover{transform:scale(1.05);box-shadow:0 0 60px rgba(139,127,212,.35)}
+.story-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.story-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(19,17,28,.4);opacity:0;transition:opacity .25s;border-radius:50%;font-size:22px}
+.story-photo-wrap:hover .story-zoom{opacity:1}
+.story-t{font-size:14px;color:var(--t2);line-height:1.7}
+.story-t strong{display:block;font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+.story-name{font-size:12px;color:var(--t3);margin-top:10px;font-style:italic}
+.lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;cursor:pointer}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:90vh;border-radius:16px;box-shadow:0 40px 120px rgba(0,0,0,.7);object-fit:contain}
+.after-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.after{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem 1.25rem;font-size:13px;color:var(--t2);line-height:1.6;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
+.after:hover{background:var(--s2);transform:translateY(-1px);box-shadow:0 0 40px rgba(139,127,212,.1)}
+.check{color:var(--ok);font-weight:700;flex-shrink:0;margin-top:1px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vc{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem}
+.vc.good{background:rgba(139,127,212,.07);border-color:rgba(139,127,212,.25)}
+.vt{font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.vt.good{color:var(--ac)}
+.vl{list-style:none;font-size:13px;color:var(--t2)}
+.vl li{padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.vl li:last-child{border-bottom:none}
+.vl-minus{color:var(--t3);flex-shrink:0}
+.vl-arrow{color:var(--ac);flex-shrink:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;transition:all .3s}
+.step:hover{background:var(--s2);border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 0 40px rgba(139,127,212,.14)}
+.sn{width:34px;height:34px;border-radius:10px;background:var(--acl);border:1px solid rgba(139,127,212,.2);color:var(--lav);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-bottom:1rem}
+.st{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.sd{font-size:13px;color:var(--t2);line-height:1.6}
+.tg-mock{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:20px;padding:1.5rem;max-width:480px;margin:0 auto}
+.tg-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--bd)}
+.tg-av{width:38px;height:38px;border-radius:50%;background:var(--ac);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.tg-name{font-size:14px;font-weight:600}
+.tg-online{font-size:11px;color:var(--ok)}
+.tg-msg{background:rgba(139,127,212,.13);border-radius:14px 14px 14px 4px;padding:13px 15px;margin-bottom:8px}
+.tg-lbl{font-size:10px;font-weight:700;color:var(--lav);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.tg-txt{font-size:13px;color:var(--text);line-height:1.65}
+.tg-txt strong{color:var(--lav)}
+.tg-time{font-size:11px;color:var(--t3);text-align:right;margin-top:6px}
+.qc{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;margin-bottom:12px;transition:all .25s}
+.qc:hover{background:var(--s2);transform:translateY(-1px);box-shadow:0 0 40px rgba(139,127,212,.1)}
+.ql{font-size:11px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.qt{font-size:15px;color:var(--text);line-height:1.7;padding-left:16px;border-left:2px solid var(--ac)}
+.qw{font-size:12px;color:var(--t3);margin-top:12px}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.rc{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:12px;transition:all .25s}
+.rc:hover{background:var(--s2);border-color:var(--bd2);box-shadow:0 0 30px rgba(139,127,212,.1)}
+.ri{width:32px;height:32px;border-radius:10px;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.rt strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.rt span{font-size:12px;color:var(--t2);line-height:1.5}
+.mbox{background:rgba(255,248,200,.04);border:1px solid rgba(244,200,66,.15);border-radius:16px;padding:1.75rem}
+.mbox p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:10px}
+.mbox p:last-child{margin:0;font-size:13px;color:var(--t3);font-style:italic}
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.pc{background:var(--s1);border:1px solid var(--bd);border-radius:20px;padding:2rem;transition:all .3s;display:flex;flex-direction:column}
+.pc:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px rgba(139,127,212,.1)}
+.pc.feat{background:rgba(139,127,212,.08);border-color:rgba(139,127,212,.32);box-shadow:0 0 60px rgba(139,127,212,.09)}
+.pbadge{display:inline-block;background:var(--ac);color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:1.25rem;align-self:flex-start}
+.pname{font-size:17px;font-weight:700;margin-bottom:4px}
+.page{font-size:12px;color:var(--t3);margin-bottom:1.25rem}
+.pamt{font-size:38px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.pfor{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:1.5rem;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:10px;font-style:italic;min-height:72px}
+.plist{list-style:none;font-size:13px;color:var(--t2);flex:1}
+.plist li{padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.plist li:last-child{border-bottom:none}
+.pcta{display:block;text-align:center;background:var(--ac);color:#fff;padding:13px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;margin-top:1.75rem;transition:all .2s;box-shadow:0 0 24px rgba(139,127,212,.2)}
+.pcta:hover{background:var(--ac2);box-shadow:0 0 40px rgba(139,127,212,.35)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.rev{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:12px;transition:all .25s}
+.rev:hover{background:var(--s2);box-shadow:0 0 40px rgba(139,127,212,.1)}
+.rbub{background:rgba(139,127,212,.1);border-radius:14px 14px 14px 4px;padding:13px 15px;font-size:13px;color:var(--text);line-height:1.65;font-style:italic}
+.rmeta{display:flex;align-items:center;gap:8px}
+.rav{width:28px;height:28px;border-radius:50%;background:var(--acl);border:1px solid rgba(139,127,212,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--lav)}
+.rname{font-size:12px;color:var(--t3)}
+.faq{border-bottom:1px solid var(--bd);padding:1.25rem 0;cursor:pointer;user-select:none}
+.faq:last-child{border-bottom:none}
+.fq{font-size:15px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.fq-plus{font-size:20px;color:var(--ac);flex-shrink:0;transition:transform .25s;display:inline-block}
+.faq.open .fq-plus{transform:rotate(45deg)}
+.fa{font-size:14px;color:var(--t2);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .35s ease,margin .35s}
+.faq.open .fa{max-height:200px;margin-top:10px}
+.fcta{padding:8rem 2rem;text-align:center;position:relative;overflow:hidden}
+.fcta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,127,212,.1),transparent 70%)}
+.fcta h2{font-size:clamp(22px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,#F0EEF8,#8B7FD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.fcta p{font-size:16px;color:var(--t2);margin-bottom:2rem;position:relative;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.7}
+.legal{text-align:center;padding:1.5rem 2rem;font-size:12px;color:var(--t3);border-top:1px solid var(--bd);line-height:1.7}
+.legal a{color:var(--ac);text-decoration:none}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:2.5rem;padding:4rem 1.25rem 3rem}
+  .hero-img{order:-1;aspect-ratio:16/9}
+  h1{font-size:clamp(22px,7vw,32px)}
+  .sec{padding:4rem 1.25rem}
+  .sec-alt .sec{padding:4rem 1.25rem}
+  nav{padding:.75rem 1.25rem}
+  .vs{grid-template-columns:1fr}
+  .story{flex-direction:column;align-items:center;text-align:center}
+  .story-photo-wrap{width:100px;height:100px}
+  .pricing{grid-template-columns:1fr}
+  .pfor{min-height:auto}
+  .fcta{padding:5rem 1.25rem}
+  .tg-mock{margin:0}
+}
+@media(max-width:480px){
+  h1{font-size:22px}
+  .actions{flex-direction:column;align-items:stretch}
+  .btn{justify-content:center}
+  .ghost{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Проф<span>Тест</span></div>
+  <a href="https://t.me/proftest_ru_bot" class="nav-btn">Пройти тест &rarr;</a>
+</nav>
+
+<div class="lb" id="lb" onclick="this.classList.remove('open')">
+  <img src="tatiana.jpg" alt="Татьяна">
+</div>
+
+<div class="hero">
+  <div>
+    <div class="badge">&#10022; Авторский тест &middot; Персональный AI-анализ</div>
+    <h1>Когда подросток говорит &laquo;не знаю&raquo; &mdash; можно наконец разобраться</h1>
+    <p class="sub">Персональный профориентационный отчёт за 15 минут. Не шаблонный список &mdash; конкретный анализ именно его ответов.</p>
+    <div class="actions">
+      <a href="https://t.me/proftest_ru_bot" class="btn">&#9992; Получить разбор в Telegram</a>
+      <a href="#how" class="ghost">Как это работает &rarr;</a>
+    </div>
+    <p class="note">10&ndash;15 минут &middot; Результат сразу &middot; Оплата картой</p>
+  </div>
+  <div class="hero-img">
+    <img src="teen.jpg" alt="Подросток за ноутбуком">
+  </div>
+</div>
+
+<div class="proof">
+  Первые прохождения: подростки из <strong>Мончегорска &bull; Мурманска</strong> &mdash; совпадение по ощущениям <strong>~80%</strong>
+</div>
+
+<div class="sec-alt">
+<div class="sec">
+  <p class="lbl">Узнаёте себя?</p>
+  <h2 class="ttl">С этим чаще всего приходят</h2>
+  <p class="stl">Родители и подростки &mdash; с разными словами об одном и том же</p>
+  <div class="pain-grid">
+    <div class="pain"><span class="pain-q">&ldquo;</span>Спрашиваю кем хочешь стать &mdash; молчит или говорит &laquo;не знаю&raquo;</div>
+    <div class="pain"><span class="pain-q">&ldquo;</span>Нравится всё сразу &mdash; и выбрать не может</div>
+    <div class="pain"><span class="pain-q">&ldquo;</span>Проходили тесты из интернета &mdash; список из 20 профессий и ничего не прояснилось</div>
+    <div class="pain"><span class="pain-q">&ldquo;</span>До поступления меньше года &mdash; а направления всё ещё нет</div>
+  </div>
+  <div class="ok-box">
+    <p class="ok-title">И это нормально</p>
+    <p class="ok-text">Большинство подростков в 13&ndash;17 лет не знают кем хотят стать. Это не лень и не отсутствие цели &mdash; в этом возрасте сложно увидеть свои сильные стороны со стороны. Именно для этого и нужен взгляд извне.</p>
+  </div>
+  <div class="story">
+    <div class="story-photo-wrap" onclick="document.getElementById(&apos;lb&apos;).classList.add(&apos;open&apos;)" title="Нажми чтобы увеличить">
+      <img src="tatiana.jpg" alt="Татьяна, автор проекта">
+      <div class="story-zoom">&#128269;</div>
+    </div>
+    <div class="story-t">
+      <strong>Почему я создала этот тест</strong>
+      Я мама двоих детей. Когда дочь не смогла ответить на вопрос &laquo;кем хочешь стать&raquo; &mdash; я начала искать инструмент который даст не общие слова, а конкретный персональный анализ. Не нашла &mdash; и создала сама. Дочь прошла первой.
+      <p class="story-name">Татьяна, Мончегорск &middot; автор проекта &middot; нажми на фото чтобы увеличить</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec">
+  <p class="lbl">После теста</p>
+  <h2 class="ttl">Подростку становится проще</h2>
+  <p class="stl">Не &laquo;кем быть&raquo; &mdash; а понять себя и найти направление</p>
+  <div class="after-grid">
+    <div class="after"><span class="check">&#10003;</span>Объяснить что ему реально интересно &mdash; не только себе, но и родителям</div>
+    <div class="after"><span class="check">&#10003;</span>Понять почему так сложно выбирать &mdash; и это не его вина</div>
+    <div class="after"><span class="check">&#10003;</span>Увидеть сильные стороны которые он сам не замечает</div>
+    <div class="after"><span class="check">&#10003;</span>Выбрать что попробовать дальше &mdash; без давления и паники</div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec-alt">
+<div class="sec">
+  <p class="lbl">Сравнение</p>
+  <h2 class="ttl">Почему это не &laquo;тест на 20 профессий&raquo;</h2>
+  <p class="stl">Чем этот разбор отличается от бесплатных тестов из интернета</p>
+  <div class="vs">
+    <div class="vc">
+      <p class="vt">Обычные тесты</p>
+      <ul class="vl">
+        <li><span class="vl-minus">&mdash;</span>Шаблонный список &mdash; одинаковый для тысяч людей</li>
+        <li><span class="vl-minus">&mdash;</span>Не объясняют почему эти профессии</li>
+        <li><span class="vl-minus">&mdash;</span>Не показывают слабые стороны</li>
+        <li><span class="vl-minus">&mdash;</span>Не учитывают твой город и вузы рядом</li>
+        <li><span class="vl-minus">&mdash;</span>Нет честных минусов у профессий</li>
+      </ul>
+    </div>
+    <div class="vc good">
+      <p class="vt good">ПрофТест</p>
+      <ul class="vl">
+        <li><span class="vl-arrow">&rarr;</span>Анализ конкретных твоих ответов</li>
+        <li><span class="vl-arrow">&rarr;</span>Профессии с объяснением почему именно тебе</li>
+        <li><span class="vl-arrow">&rarr;</span>Честный блок &laquo;что может даваться тяжело&raquo;</li>
+        <li><span class="vl-arrow">&rarr;</span>Вузы рядом с твоим городом</li>
+        <li><span class="vl-arrow">&rarr;</span>Конкретные действия прямо сейчас</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec" id="how">
+  <p class="lbl">Процесс</p>
+  <h2 class="ttl">Как это работает</h2>
+  <p class="stl">Три шага &mdash; и у вас на руках персональный разбор</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><p class="st">Отвечаешь на вопросы</p><p class="sd">20 вопросов про то как ты думаешь и что тебя заряжает. Не про профессии &mdash; про тебя.</p></div>
+    <div class="step"><div class="sn">2</div><p class="st">Система анализирует</p><p class="sd">Анализируются поведенческие паттерны &mdash; поэтому отчёт конкретный, а не общий для всех.</p></div>
+    <div class="step"><div class="sn">3</div><p class="st">Получаешь разбор</p><p class="sd">Персональный отчёт прямо в Telegram. Сохрани &mdash; он твой навсегда.</p></div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec-alt">
+<div class="sec">
+  <p class="lbl">Пример отчёта</p>
+  <h2 class="ttl">Вот как это выглядит в Telegram</h2>
+  <p class="stl">Реальные фрагменты &mdash; имена изменены</p>
+  <div class="tg-mock">
+    <div class="tg-head">
+      <div class="tg-av">П</div>
+      <div><div class="tg-name">ПрофТест</div><div class="tg-online">&#9679; online</div></div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Твой профиль</div>
+      <div class="tg-txt">Судя по результатам, у тебя ярко выражен <strong>исследовательский тип с социальным вектором</strong>. Тебе важно не просто знать как что-то устроено &mdash; а понять зачем это людям.</div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Что может даваться тяжело</div>
+      <div class="tg-txt">Тебе сложно сдать работу, которая внутри ещё не готова. <strong>Можешь потратить час на подбор шрифта</strong> &mdash; не из-за перфекционизма, а потому что внутри есть ощущение &laquo;это ещё не то&raquo;.</div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Профессии &mdash; очень вероятно</div>
+      <div class="tg-txt"><strong>UX-исследователь</strong> &mdash; изучаешь как люди взаимодействуют с продуктами. <em>Минус: много документирования.</em><br><br><strong>Клинический психолог</strong> &mdash; глубокое понимание человека через науку. <em>Минус: долгая учёба.</em></div>
+    </div>
+    <div class="tg-time">сейчас &#10003;&#10003;</div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec">
+  <p class="lbl">Содержание</p>
+  <h2 class="ttl">Что будет в отчёте</h2>
+  <p class="stl">Полный анализ &mdash; не просто список профессий</p>
+  <div class="rg">
+    <div class="rc"><div class="ri">&#128100;</div><div class="rt"><strong>Профиль личности</strong><span>С живыми примерами из жизни</span></div></div>
+    <div class="rc"><div class="ri">&#128065;</div><div class="rt"><strong>Что показал тест</strong><span>Какие ответы к чему привели</span></div></div>
+    <div class="rc"><div class="ri">&#9889;</div><div class="rt"><strong>Что может даваться тяжело</strong><span>Честно &mdash; не только плюсы</span></div></div>
+    <div class="rc"><div class="ri">&#128188;</div><div class="rt"><strong>Профессии трёх уровней</strong><span>С минусами каждой</span></div></div>
+    <div class="rc"><div class="ri">&#8599;</div><div class="rt"><strong>Два пути внутри профиля</strong><span>Развилки под твои склонности</span></div></div>
+    <div class="rc"><div class="ri">&#127979;</div><div class="rt"><strong>Вузы рядом с тобой</strong><span>В твоём городе и рядом</span></div></div>
+    <div class="rc"><div class="ri">&#129504;</div><div class="rt"><strong>Как ты принимаешь решения</strong><span>Почему сложнее или проще</span></div></div>
+    <div class="rc"><div class="ri">&rarr;</div><div class="rt"><strong>Что сделать прямо сейчас</strong><span>Конкретные курсы и действия</span></div></div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec-alt">
+<div class="sec">
+  <p class="lbl">О тесте</p>
+  <h2 class="ttl">Честно о том как он создан</h2>
+  <p class="stl"></p>
+  <div class="mbox">
+    <p>Тест разработан авторами проекта на основе подходов профориентационной психологии и анализа поведенческих паттернов в ответах подростков. При создании использовались идеи теории профессиональных типов Голланда и типологии профессий Климова, адаптированные под современный формат AI-анализа.</p>
+    <p>Тест не является официальной психодиагностической методикой и не заменяет консультацию специалиста.</p>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec">
+  <p class="lbl">Тарифы</p>
+  <h2 class="ttl">Стоимость</h2>
+  <p class="stl">Разово, без подписки. Чек приходит автоматически.</p>
+  <div class="pricing">
+    <div class="pc">
+      <p class="pname">Базовый</p>
+      <p class="page">7&ndash;9 класс &middot; 13&ndash;16 лет</p>
+      <p class="pamt">490 &#8381;</p>
+      <p class="pfor">Понять общее направление и убрать часть тревоги &mdash; поступление ещё не скоро</p>
+      <ul class="plist">
+        <li><span class="vl-arrow">&rarr;</span>Профиль личности с живыми примерами</li>
+        <li><span class="vl-arrow">&rarr;</span>Профессии трёх уровней с минусами</li>
+        <li><span class="vl-arrow">&rarr;</span>Вузы в твоём городе</li>
+        <li><span class="vl-arrow">&rarr;</span>Что попробовать прямо сейчас</li>
+      </ul>
+      <a href="https://t.me/proftest_ru_bot" class="pcta">Узнать сильные стороны &rarr;</a>
+    </div>
+    <div class="pc feat">
+      <span class="pbadge">Для старшеклассников</span>
+      <p class="pname">Расширенный</p>
+      <p class="page">10&ndash;11 класс &middot; 15&ndash;17 лет</p>
+      <p class="pamt">690 &#8381;</p>
+      <p class="pfor">Поступление близко &mdash; нужно выбирать ЕГЭ и разобраться между несколькими вариантами</p>
+      <ul class="plist">
+        <li><span class="vl-arrow">&rarr;</span>Всё из базового</li>
+        <li><span class="vl-arrow">&rarr;</span>Как ты принимаешь решения</li>
+        <li><span class="vl-arrow">&rarr;</span>В какой среде раскрываешься</li>
+        <li><span class="vl-arrow">&rarr;</span>Два пути внутри профиля</li>
+        <li><span class="vl-arrow">&rarr;</span>Карьерные развилки и ЕГЭ</li>
+      </ul>
+      <a href="https://t.me/proftest_ru_bot" class="pcta">Посмотреть свой профиль &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec-alt">
+<div class="sec">
+  <p class="lbl">Отзывы</p>
+  <h2 class="ttl">Первые прохождения</h2>
+  <p class="stl">Подростки из Мончегорска</p>
+  <div class="rev-grid">
+    <div class="rev">
+      <div class="rbub">&laquo;Я впервые увидела не просто &ldquo;тебе подходит психология&rdquo;, а объяснение &mdash; почему мне тяжело выбирать и что с этим делать. Про то что я переделываю за другими &mdash; вообще в точку.&raquo;</div>
+      <div class="rmeta"><div class="rav">С</div><div class="rname">Соня, 8 класс, Мончегорск</div></div>
+    </div>
+    <div class="rev">
+      <div class="rbub">&laquo;Больше информации чем в любом тесте который я проходила раньше. Особенно точно про структуру и то что мне важно видеть результат. Наконец стало понятнее куда двигаться.&raquo;</div>
+      <div class="rmeta"><div class="rav">Т</div><div class="rname">Татьяна, 11 класс, Мончегорск</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<div class="sec">
+  <p class="lbl">FAQ</p>
+  <h2 class="ttl">Частые вопросы</h2>
+  <div class="faq" onclick="this.classList.toggle('open')">
+    <p class="fq">Чем это отличается от бесплатных тестов?<span class="fq-plus">+</span></p>
+    <p class="fa">Бесплатные тесты выдают шаблонный список профессий одинаковый для всех. Здесь анализируются конкретные твои ответы &mdash; отчёт учитывает сочетание склонностей, город и даёт честные минусы по каждой профессии.</p>
+  </div>
+  <div class="faq" onclick="this.classList.toggle('open')">
+    <p class="fq">Мои данные в безопасности?<span class="fq-plus">+</span></p>
+    <p class="fa">Собираем только имя, класс и город &mdash; для персонализации. Данные не передаются третьим лицам. Работаем по 152-ФЗ &laquo;О персональных данных&raquo;.</p>
+  </div>
+  <div class="faq" onclick="this.classList.toggle('open')">
+    <p class="fq">Подросток младше 18 &mdash; можно проходить?<span class="fq-plus">+</span></p>
+    <p class="fa">Да. Начиная тест, родитель или подросток подтверждает согласие на обработку данных от своего имени или от имени ребёнка.</p>
+  </div>
+  <div class="faq" onclick="this.classList.toggle('open')">
+    <p class="fq">Тест гарантирует что подросток определится с профессией?<span class="fq-plus">+</span></p>
+    <p class="fa">Нет &mdash; и ни один тест в мире этого не гарантирует. Тест даёт направление, конкретные идеи и снижает тревогу. Выбор профессии &mdash; это процесс который требует времени и практики.</p>
+  </div>
+  <div class="faq" onclick="this.classList.toggle('open')">
+    <p class="fq">Как оплатить?<span class="fq-plus">+</span></p>
+    <p class="fa">Оплата картой через защищённый сервис ЮKassa. Чек приходит автоматически. Никаких подписок &mdash; разовый платёж.</p>
+  </div>
+</div>
+
+<div class="fcta">
+  <h2>Иногда подростку нужен не совет &mdash;<br>а возможность наконец понять себя</h2>
+  <p>15 минут &mdash; и у вас появляется направление, от которого можно отталкиваться дальше.</p>
+  <a href="https://t.me/proftest_ru_bot" class="btn">&#9992; Начать тест &mdash; от 490 &#8381;</a>
+</div>
+
+<div class="legal">
+  Самозанятый &middot; Работаем по 152-ФЗ &laquo;О персональных данных&raquo; &middot; <a href="#">Политика конфиденциальности</a>
+</div>
+
+</body>
+</html>
