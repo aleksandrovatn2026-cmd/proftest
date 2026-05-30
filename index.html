@@ -143,13 +143,19 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
 .sd{font-size:13px;color:var(--t2);line-height:1.6;position:relative;z-index:1}
 
 /* ПРИМЕР ОТЧЁТА */
-.tg-mock{background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.14);border-radius:22px;padding:1.5rem;max-width:500px;margin:0 auto;box-shadow:0 0 40px rgba(139,127,212,.07)}
+.tg-mock{background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.2);border-radius:22px;padding:1.5rem;max-width:500px;margin:0 auto;box-shadow:0 0 40px rgba(139,127,212,.1)}
 .tg-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
-.tg-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7B61FF,#00C6FF);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 14px rgba(123,97,255,.4)}
+.tg-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7B61FF,#00C6FF);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 0 16px rgba(123,97,255,.5)}
 .tg-name{font-size:14px;font-weight:700}
 .tg-online{font-size:11px;color:var(--ok)}
-.tg-msg{background:rgba(139,127,212,.09);border:1px solid rgba(139,127,212,.1);border-radius:14px 14px 14px 4px;padding:13px 15px;margin-bottom:8px}
-.tg-lbl{font-size:10px;font-weight:700;color:var(--lav);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.tg-msg{border-radius:14px 14px 14px 4px;padding:13px 15px;margin-bottom:10px}
+.tg-msg.purple{background:rgba(123,97,255,.12);border:1px solid rgba(123,97,255,.2)}
+.tg-msg.teal{background:rgba(0,201,177,.08);border:1px solid rgba(0,201,177,.2)}
+.tg-msg.gold{background:rgba(255,184,0,.08);border:1px solid rgba(255,184,0,.2)}
+.tg-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.tg-msg.purple .tg-lbl{color:#A78BFF}
+.tg-msg.teal .tg-lbl{color:#00C9B1}
+.tg-msg.gold .tg-lbl{color:#FFB800}
 .tg-txt{font-size:13px;color:var(--text);line-height:1.65}
 .tg-txt strong{color:#C4BEE8}
 .tg-time{font-size:11px;color:var(--t3);text-align:right;margin-top:6px}
@@ -255,7 +261,9 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
     <a href="https://t.me/proftest_ru_bot" class="btn-tg">✈ Пройти в Telegram</a>
   </div>
   <p class="cta-note">10 минут · результат сразу</p>
-  <p style="font-size:13px;color:var(--t2)">Это точно <span style="color:#00E676;font-weight:800">НЕ</span> школьный тест</p>
+  <div style="background:rgba(255,209,0,.08);border:1.5px solid rgba(255,209,0,.5);border-radius:12px;padding:10px 20px;display:inline-block;box-shadow:0 0 20px rgba(255,209,0,.15)">
+    <p style="font-size:15px;font-weight:700;color:var(--text)">Это точно <span style="color:#FFD100;font-weight:900">НЕ</span> школьный тест</p>
+  </div>
 </div>
 
 <div class="proof">
@@ -372,15 +380,15 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
       <div class="tg-av">П</div>
       <div><div class="tg-name">ПрофТест</div><div class="tg-online">● online</div></div>
     </div>
-    <div class="tg-msg">
+    <div class="tg-msg purple">
       <div class="tg-lbl">Твой профиль</div>
       <div class="tg-txt">Судя по результатам, у тебя ярко выражен <strong>исследовательский тип с социальным вектором</strong>. Тебе важно не просто знать как что-то устроено — а понять зачем это людям.</div>
     </div>
-    <div class="tg-msg">
+    <div class="tg-msg teal">
       <div class="tg-lbl">Что может даваться тяжело</div>
       <div class="tg-txt">Тебе сложно сдать работу которая внутри ещё не готова. <strong>Можешь потратить час на подбор шрифта</strong> — не из-за перфекционизма, а потому что внутри есть ощущение «это ещё не то».</div>
     </div>
-    <div class="tg-msg">
+    <div class="tg-msg gold">
       <div class="tg-lbl">Профессии — очень вероятно</div>
       <div class="tg-txt"><strong>UX-исследователь</strong> — изучаешь как люди взаимодействуют с продуктами. <em>Минус: много документирования.</em><br><br><strong>Клинический психолог</strong> — глубокое понимание через науку. <em>Минус: долгая учёба.</em></div>
     </div>
