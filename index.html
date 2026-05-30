@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ПрофТест — Профориентация для подростков</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#13111C;
-  --s1:rgba(255,255,255,0.042);
+  --bg:#0D0B1E;
+  --s1:rgba(255,255,255,0.04);
   --s2:rgba(255,255,255,0.07);
   --bd:rgba(255,255,255,0.08);
-  --bd2:rgba(255,255,255,0.16);
+  --bd2:rgba(255,255,255,0.15);
   --text:#F0EEF8;
   --t2:#9B97B2;
   --t3:#5C5878;
@@ -19,199 +19,201 @@
   --ac2:#6B5FBD;
   --acl:rgba(139,127,212,0.13);
   --lav:#C4BEE8;
-  --ok:#6FCF97;
+  --ok:#00E676;
   --basic:#3B9EFF;
   --basicl:rgba(59,158,255,0.13);
   --basicb:rgba(59,158,255,0.3);
   --senior:#B87EFF;
   --seniorl:rgba(184,126,255,0.13);
   --seniorb:rgba(184,126,255,0.32);
+  --gold:#FFB800;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:Manrope,sans-serif;
-  background:#13111C;
+  background:var(--bg);
   color:var(--text);line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(19,17,28,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
-.logo{font-size:15px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
-.logo span{color:var(--ac)}
+/* ===== АНИМАЦИИ ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(139,127,212,.3)}50%{box-shadow:0 0 40px rgba(139,127,212,.6)}}
+@keyframes glow{0%,100%{opacity:.7}50%{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== NAV ===== */
+nav{
+  position:sticky;top:0;z-index:100;
+  padding:.85rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(13,11,30,.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(139,127,212,.15);
+}
+.logo{font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.logo span{
+  background:linear-gradient(135deg,#8B7FD4,#00C6FF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 .nav-links{display:flex;align-items:center;gap:10px}
-.nav-btn{background:var(--ac);color:#fff;padding:9px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 0 20px rgba(139,127,212,.25);white-space:nowrap}
-.nav-btn:hover{background:var(--ac2);transform:translateY(-1px)}
-.nav-tg{background:rgba(255,255,255,0.06);color:var(--t2);padding:9px 16px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid var(--bd);white-space:nowrap}
-.nav-tg:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.nav-btn{
+  background:linear-gradient(135deg,#7B61FF,#00C6FF);
+  color:#fff;padding:9px 22px;border-radius:100px;
+  font-size:13px;font-weight:700;text-decoration:none;
+  transition:all .2s;box-shadow:0 0 20px rgba(123,97,255,.35);
+  white-space:nowrap;
+}
+.nav-btn:hover{transform:translateY(-1px);box-shadow:0 0 35px rgba(123,97,255,.55)}
+.nav-tg{
+  background:rgba(255,255,255,.05);color:var(--t2);
+  padding:9px 16px;border-radius:100px;font-size:13px;font-weight:600;
+  text-decoration:none;transition:all .2s;border:1px solid var(--bd);white-space:nowrap;
+}
+.nav-tg:hover{background:rgba(255,255,255,.09);color:var(--text)}
 
-/* БАННЕР */
-.banner{width:100%;display:block;line-height:0}
-.banner img{width:100%;height:auto;display:block;max-height:580px;object-fit:cover;object-position:top}
+/* ===== БАННЕР ===== */
+.banner{width:100%;display:block;line-height:0;position:relative}
+.banner img{width:100%;height:auto;display:block}
 
-/* CTA БЛОК ПОД БАННЕРОМ */
+/* ===== CTA БЛОК ===== */
 .hero-cta{
-  background:linear-gradient(180deg,#1a1730 0%,#13111C 100%);
-  padding:2.5rem 2rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:1.25rem;
-  border-bottom:1px solid var(--bd);
+  background:linear-gradient(180deg,rgba(20,15,45,.95) 0%,rgba(13,11,30,1) 100%);
+  padding:2.25rem 2rem;
+  display:flex;flex-direction:column;align-items:center;gap:1.1rem;
+  border-bottom:1px solid rgba(139,127,212,.12);
 }
 .cta-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .btn-main{
   display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,#8B7FD4,#6B5FBD);
-  color:#fff;padding:15px 32px;border-radius:100px;
-  font-size:15px;font-weight:700;text-decoration:none;
+  background:linear-gradient(135deg,#7B61FF,#00C6FF);
+  background-size:200% 200%;
+  color:#fff;padding:15px 34px;border-radius:100px;
+  font-size:15px;font-weight:800;text-decoration:none;
   transition:all .25s;
-  box-shadow:0 0 40px rgba(139,127,212,.4);
+  box-shadow:0 0 35px rgba(123,97,255,.45);
+  animation:gradShift 4s ease infinite;
   white-space:nowrap;
 }
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(139,127,212,.55)}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 55px rgba(123,97,255,.65)}
 .btn-tg{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.06);
+  background:rgba(255,255,255,.06);
   color:var(--text);padding:15px 28px;border-radius:100px;
-  font-size:15px;font-weight:600;text-decoration:none;
-  border:1px solid var(--bd2);
+  font-size:15px;font-weight:700;text-decoration:none;
+  border:1px solid rgba(255,255,255,.15);
   transition:all .25s;white-space:nowrap;
 }
-.btn-tg:hover{background:rgba(255,255,255,0.1);transform:translateY(-2px)}
+.btn-tg:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);border-color:rgba(255,255,255,.25)}
 .cta-note{font-size:13px;color:var(--t3);text-align:center}
 
-/* PROOF */
-.proof{text-align:center;padding:1.25rem 2rem;background:rgba(139,127,212,.04);border-bottom:1px solid var(--bd);font-size:13px;color:var(--t3)}
+/* ===== PROOF ===== */
+.proof{
+  text-align:center;padding:1.1rem 2rem;
+  background:rgba(139,127,212,.05);
+  border-bottom:1px solid rgba(139,127,212,.1);
+  font-size:13px;color:var(--t3);
+}
 .proof strong{color:var(--lav)}
 
-/* СЕКЦИИ */
-.sec{padding:5rem 2rem;max-width:960px;margin:0 auto}
-.sec-alt{background:linear-gradient(180deg,rgba(255,255,255,.016),rgba(139,127,212,.025));border-top:1px solid rgba(255,255,255,.042);border-bottom:1px solid rgba(255,255,255,.042)}
-.sec-alt .sec{padding:5rem 2rem}
-.lbl{font-size:11px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;text-align:center}
-.ttl{font-size:clamp(20px,3.2vw,30px);font-weight:700;letter-spacing:-.02em;text-align:center;margin-bottom:.75rem}
-.stl{font-size:15px;color:var(--t2);text-align:center;max-width:500px;margin:0 auto 2.5rem;line-height:1.7}
-.div{height:1px;background:linear-gradient(90deg,transparent,var(--bd),transparent)}
+/* ===== ЦИФРЫ ===== */
+.stats-section{padding:4rem 2rem;max-width:960px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.stat-card{
+  position:relative;border-radius:20px;padding:2rem 1.5rem;
+  text-align:center;overflow:hidden;
+  border:1px solid;
+  transition:transform .3s;
+  cursor:default;
+}
+.stat-card:hover{transform:translateY(-4px)}
+.stat-card.purple{
+  background:linear-gradient(135deg,rgba(123,97,255,.15),rgba(123,97,255,.05));
+  border-color:rgba(123,97,255,.3);
+  box-shadow:0 0 40px rgba(123,97,255,.12);
+}
+.stat-card.blue{
+  background:linear-gradient(135deg,rgba(0,198,255,.15),rgba(0,198,255,.05));
+  border-color:rgba(0,198,255,.3);
+  box-shadow:0 0 40px rgba(0,198,255,.12);
+}
+.stat-card.gold{
+  background:linear-gradient(135deg,rgba(255,184,0,.15),rgba(255,184,0,.05));
+  border-color:rgba(255,184,0,.3);
+  box-shadow:0 0 40px rgba(255,184,0,.12);
+}
+.stat-icon{font-size:36px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite}
+.stat-card.blue .stat-icon{animation-delay:.5s}
+.stat-card.gold .stat-icon{animation-delay:1s}
+.stat-num{
+  font-size:42px;font-weight:900;letter-spacing:-.03em;display:block;margin-bottom:4px;
+}
+.stat-card.purple .stat-num{color:#A78BFF}
+.stat-card.blue .stat-num{color:#00C6FF}
+.stat-card.gold .stat-num{color:#FFB800}
+.stat-label{font-size:13px;color:var(--t2)}
 
-/* БОЛИ */
+/* ===== СЕКЦИИ ===== */
+.sec{padding:5rem 2rem;max-width:960px;margin:0 auto}
+.sec-dark{background:linear-gradient(180deg,rgba(20,15,45,.6),rgba(13,11,30,.8));border-top:1px solid rgba(139,127,212,.08);border-bottom:1px solid rgba(139,127,212,.08)}
+.sec-dark .sec{padding:5rem 2rem}
+.lbl{
+  font-size:11px;font-weight:700;
+  background:linear-gradient(135deg,#8B7FD4,#00C6FF);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-transform:uppercase;letter-spacing:.12em;margin-bottom:.75rem;text-align:center;display:block;
+}
+.ttl{font-size:clamp(20px,3.2vw,30px);font-weight:800;letter-spacing:-.02em;text-align:center;margin-bottom:.75rem}
+.stl{font-size:15px;color:var(--t2);text-align:center;max-width:500px;margin:0 auto 2.5rem;line-height:1.7}
+.div{height:1px;background:linear-gradient(90deg,transparent,rgba(139,127,212,.2),transparent)}
+
+/* ===== БОЛИ ===== */
 .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:2rem}
-.pain{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.4rem;font-size:14px;color:var(--t2);line-height:1.65;transition:all .3s}
-.pain-q{font-size:28px;color:var(--ac);opacity:.4;display:block;line-height:1;margin-bottom:8px;font-family:Georgia,serif}
-.pain:hover{background:var(--s2);border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 0 40px rgba(139,127,212,.12)}
-.ok-box{background:linear-gradient(135deg,rgba(111,207,151,.07),rgba(139,127,212,.07));border:1px solid rgba(111,207,151,.15);border-radius:16px;padding:1.5rem 2rem;margin-bottom:1.5rem}
-.ok-title{font-size:16px;font-weight:700;color:var(--ok);margin-bottom:8px}
+.pain{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;padding:1.4rem;
+  font-size:14px;color:var(--t2);line-height:1.65;
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.pain::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(139,127,212,.08),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.pain:hover::before{opacity:1}
+.pain:hover{border-color:rgba(139,127,212,.3);transform:translateY(-3px);box-shadow:0 0 30px rgba(139,127,212,.15)}
+.pain-q{font-size:32px;color:#7B61FF;opacity:.5;display:block;line-height:1;margin-bottom:8px;font-family:Georgia,serif}
+.ok-box{
+  background:linear-gradient(135deg,rgba(0,230,118,.07),rgba(139,127,212,.07));
+  border:1px solid rgba(0,230,118,.15);border-radius:18px;
+  padding:1.5rem 2rem;margin-bottom:1.5rem;
+}
+.ok-title{font-size:16px;font-weight:800;color:var(--ok);margin-bottom:8px}
 .ok-text{font-size:14px;color:var(--t2);line-height:1.7}
 
-/* АВТОР */
-.story{background:var(--s1);border:1px solid var(--bd);border-radius:20px;padding:2rem;display:flex;gap:2rem;align-items:flex-start}
-.story-photo-wrap{flex-shrink:0;width:110px;height:110px;border-radius:50%;overflow:hidden;border:2px solid rgba(139,127,212,.35);box-shadow:0 0 40px rgba(139,127,212,.2);cursor:pointer;transition:all .3s;position:relative}
-.story-photo-wrap:hover{transform:scale(1.05)}
-.story-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-.story-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(19,17,28,.4);opacity:0;transition:opacity .25s;border-radius:50%;font-size:20px}
-.story-photo-wrap:hover .story-zoom{opacity:1}
-.story-t{font-size:14px;color:var(--t2);line-height:1.7}
-.story-t strong{display:block;font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
-.story-name{font-size:12px;color:var(--t3);margin-top:10px;font-style:italic}
-.lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;cursor:pointer}
-.lb.open{display:flex}
-.lb img{max-width:90vw;max-height:90vh;border-radius:16px;object-fit:contain}
-
-/* ПОСЛЕ ТЕСТА */
-.after-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.after{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem 1.25rem;font-size:13px;color:var(--t2);line-height:1.6;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
-.after:hover{background:var(--s2);transform:translateY(-1px);box-shadow:0 0 30px rgba(139,127,212,.1)}
-.check{color:var(--ok);font-weight:700;flex-shrink:0;margin-top:1px}
-
-/* СРАВНЕНИЕ */
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.vc{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem}
-.vc.good{background:rgba(139,127,212,.07);border-color:rgba(139,127,212,.25)}
-.vt{font-size:12px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
-.vt.good{color:var(--ac)}
-.vl{list-style:none;font-size:13px;color:var(--t2)}
-.vl li{padding:5px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
-.vl li:last-child{border-bottom:none}
-.vl-minus{color:var(--t3);flex-shrink:0}
-.vl-arrow{color:var(--ac);flex-shrink:0}
-
-/* КАК РАБОТАЕТ */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.step{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;transition:all .3s}
-.step:hover{background:var(--s2);border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 0 40px rgba(139,127,212,.14)}
-.sn{width:34px;height:34px;border-radius:10px;background:var(--acl);border:1px solid rgba(139,127,212,.2);color:var(--lav);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-bottom:1rem}
-.st{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
-.sd{font-size:13px;color:var(--t2);line-height:1.6}
-
-/* CTA ПОД ВТОРЫМ БАННЕРОМ */
-.banner2-cta{
-  background:linear-gradient(180deg,#0e0c1a 0%,#13111C 100%);
-  padding:2rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:1rem;
-  border-bottom:1px solid var(--bd);
-}
-.banner2-title{font-size:16px;font-weight:700;color:var(--text);text-align:center}
-.banner2-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn-basic{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--basic);color:#fff;
-  padding:13px 26px;border-radius:100px;
-  font-size:14px;font-weight:700;text-decoration:none;
-  transition:all .25s;box-shadow:0 0 24px rgba(59,158,255,.35);
-  white-space:nowrap;
-}
-.btn-basic:hover{background:#2B8EEF;transform:translateY(-2px);box-shadow:0 0 40px rgba(59,158,255,.5)}
-.btn-senior{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--senior);color:#fff;
-  padding:13px 26px;border-radius:100px;
-  font-size:14px;font-weight:700;text-decoration:none;
-  transition:all .25s;box-shadow:0 0 24px rgba(184,126,255,.35);
-  white-space:nowrap;
-}
-.btn-senior:hover{background:#A06EEF;transform:translateY(-2px);box-shadow:0 0 40px rgba(184,126,255,.5)}
-.banner2-note{font-size:12px;color:var(--t3);text-align:center}
-
-/* ПРИМЕР В TG */
-.tg-mock{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:20px;padding:1.5rem;max-width:480px;margin:0 auto}
-.tg-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--bd)}
-.tg-av{width:38px;height:38px;border-radius:50%;background:var(--ac);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
-.tg-name{font-size:14px;font-weight:600}
-.tg-online{font-size:11px;color:var(--ok)}
-.tg-msg{background:rgba(139,127,212,.13);border-radius:14px 14px 14px 4px;padding:13px 15px;margin-bottom:8px}
-.tg-lbl{font-size:10px;font-weight:700;color:var(--lav);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-.tg-txt{font-size:13px;color:var(--text);line-height:1.65}
-.tg-txt strong{color:var(--lav)}
-.tg-time{font-size:11px;color:var(--t3);text-align:right;margin-top:6px}
-
-/* СОДЕРЖАНИЕ */
-.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.rc{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:12px;transition:all .25s}
-.rc:hover{background:var(--s2);border-color:var(--bd2);box-shadow:0 0 30px rgba(139,127,212,.1)}
-.ri{width:32px;height:32px;border-radius:10px;background:var(--acl);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.rt strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
-.rt span{font-size:12px;color:var(--t2);line-height:1.5}
-
-/* О ТЕСТЕ */
-.mbox{background:rgba(255,248,200,.04);border:1px solid rgba(244,200,66,.15);border-radius:16px;padding:1.75rem}
-.mbox p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:10px}
-.mbox p:last-child{margin:0;font-size:13px;color:var(--t3);font-style:italic}
-
-/* ТАРИФЫ */
+/* ===== ТАРИФЫ ===== */
 .pricing-hint{display:flex;gap:12px;justify-content:center;margin-bottom:1.75rem;flex-wrap:wrap}
-.pricing-hint-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600}
+.pricing-hint-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700}
 .hint-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .hint-dot.basic{background:var(--basic)}
 .hint-dot.senior{background:var(--senior)}
 .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.pc{background:var(--s1);border:1px solid var(--bd);border-radius:20px;padding:0;transition:all .3s;display:flex;flex-direction:column;overflow:hidden}
-.pc:hover{transform:translateY(-3px)}
+.pc{
+  background:rgba(255,255,255,.03);border:1px solid var(--bd);
+  border-radius:22px;padding:0;transition:all .35s;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.pc:not(.feat):hover{transform:translateY(-4px);border-color:rgba(59,158,255,.4);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px rgba(59,158,255,.15)}
+.pc.feat:hover{transform:translateY(-4px);border-color:rgba(184,126,255,.4);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px rgba(184,126,255,.2)}
 .pc-stripe{height:4px;width:100%;background:var(--basic);flex-shrink:0}
-.pc.feat .pc-stripe{background:var(--senior)}
+.pc.feat .pc-stripe{background:linear-gradient(90deg,#B87EFF,#7B61FF)}
+.pc:not(.feat) .pc-stripe{background:linear-gradient(90deg,#3B9EFF,#00C6FF)}
 .pc-body{padding:2rem;display:flex;flex-direction:column;flex:1}
 .pc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
 .pc-grade{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 12px;border-radius:100px}
@@ -220,76 +222,235 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
 .pc-grade-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .pc-grade.basic .pc-grade-dot{background:var(--basic)}
 .pc-grade.senior .pc-grade-dot{background:var(--senior)}
-.pbadge{display:inline-block;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px}
+.pbadge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px}
 .pc:not(.feat) .pbadge{display:none}
 .pc.feat .pbadge{background:var(--seniorl);color:var(--senior);border:1px solid var(--seniorb)}
-.pname{font-size:20px;font-weight:800;margin-bottom:2px}
+.pname{font-size:22px;font-weight:900;margin-bottom:4px;letter-spacing:-.02em}
 .pc:not(.feat) .pname{color:var(--basic)}
 .pc.feat .pname{color:var(--senior)}
-.pamt-row{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
-.pamt{font-size:42px;font-weight:800;letter-spacing:-.03em}
+.pamt-row{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
+.pamt{font-size:48px;font-weight:900;letter-spacing:-.04em}
 .pc:not(.feat) .pamt{color:var(--basic)}
 .pc.feat .pamt{color:var(--senior)}
-.pamt-cur{font-size:18px;font-weight:700;color:var(--t2);margin-left:2px}
-.pfor{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:1.5rem;padding:12px 14px;border-radius:10px;font-style:italic;min-height:72px}
+.pamt-cur{font-size:20px;font-weight:700;color:var(--t2);margin-left:2px}
+.pfor{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:1.5rem;padding:12px 14px;border-radius:12px;font-style:italic}
 .pc:not(.feat) .pfor{background:rgba(59,158,255,.05);border:1px solid rgba(59,158,255,.12)}
 .pc.feat .pfor{background:rgba(184,126,255,.05);border:1px solid rgba(184,126,255,.12)}
 .plist{list-style:none;font-size:13px;color:var(--t2);flex:1}
-.plist li{padding:6px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.plist li{padding:7px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
 .plist li:last-child{border-bottom:none}
-.pc:not(.feat) .plist .vl-arrow{color:var(--basic)}
-.pc.feat .plist .vl-arrow{color:var(--senior)}
-.pcta{display:block;text-align:center;color:#fff;padding:13px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;margin-top:1.75rem;transition:all .2s}
-.pc:not(.feat) .pcta{background:var(--basic);box-shadow:0 0 24px rgba(59,158,255,.25)}
-.pc:not(.feat) .pcta:hover{background:#2B8EEF}
-.pc.feat .pcta{background:var(--senior);box-shadow:0 0 24px rgba(184,126,255,.25)}
-.pc.feat .pcta:hover{background:#A06EEF}
-.pc:not(.feat):hover{box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px rgba(59,158,255,.1)}
-.pc.feat:hover{box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px rgba(184,126,255,.15)}
+.pc:not(.feat) .parr{color:var(--basic)}
+.pc.feat .parr{color:var(--senior)}
+.pcta{
+  display:block;text-align:center;color:#fff;
+  padding:14px;border-radius:100px;font-size:15px;font-weight:800;
+  text-decoration:none;margin-top:1.75rem;transition:all .2s;
+}
+.pc:not(.feat) .pcta{background:linear-gradient(135deg,#3B9EFF,#00C6FF);box-shadow:0 0 24px rgba(59,158,255,.3)}
+.pc:not(.feat) .pcta:hover{box-shadow:0 0 40px rgba(59,158,255,.5);transform:translateY(-1px)}
+.pc.feat .pcta{background:linear-gradient(135deg,#B87EFF,#7B61FF);box-shadow:0 0 24px rgba(184,126,255,.3)}
+.pc.feat .pcta:hover{box-shadow:0 0 40px rgba(184,126,255,.5);transform:translateY(-1px)}
 
-/* ОТЗЫВЫ */
+/* ===== ВТОРОЙ БАННЕР CTA ===== */
+.banner2-cta{
+  background:linear-gradient(180deg,rgba(10,8,25,.98),rgba(13,11,30,1));
+  padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;
+  border-bottom:1px solid rgba(139,127,212,.1);
+}
+.banner2-title{font-size:17px;font-weight:800;color:var(--text);text-align:center}
+.banner2-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-basic{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#3B9EFF,#00C6FF);color:#fff;
+  padding:13px 28px;border-radius:100px;font-size:14px;font-weight:800;
+  text-decoration:none;transition:all .25s;
+  box-shadow:0 0 24px rgba(59,158,255,.35);white-space:nowrap;
+}
+.btn-basic:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(59,158,255,.55)}
+.btn-senior{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#B87EFF,#7B61FF);color:#fff;
+  padding:13px 28px;border-radius:100px;font-size:14px;font-weight:800;
+  text-decoration:none;transition:all .25s;
+  box-shadow:0 0 24px rgba(184,126,255,.35);white-space:nowrap;
+}
+.btn-senior:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(184,126,255,.55)}
+.banner2-note{font-size:12px;color:var(--t3)}
+
+/* ===== КАК РАБОТАЕТ ===== */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{
+  background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.12);
+  border-radius:18px;padding:1.75rem;transition:all .3s;position:relative;overflow:hidden;
+}
+.step::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(123,97,255,.08),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.step:hover::after{opacity:1}
+.step:hover{border-color:rgba(139,127,212,.3);transform:translateY(-3px);box-shadow:0 0 35px rgba(139,127,212,.15)}
+.sn{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,#7B61FF,#00C6FF);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:900;margin-bottom:1.1rem;
+  box-shadow:0 0 20px rgba(123,97,255,.4);
+  position:relative;z-index:1;
+}
+.st{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;position:relative;z-index:1}
+.sd{font-size:13px;color:var(--t2);line-height:1.6;position:relative;z-index:1}
+
+/* ===== ПРИМЕР ОТЧЁТА ===== */
+.tg-mock{
+  background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.15);
+  border-radius:22px;padding:1.5rem;max-width:500px;margin:0 auto;
+  box-shadow:0 0 40px rgba(139,127,212,.08);
+}
+.tg-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.tg-av{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#7B61FF,#00C6FF);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:#fff;flex-shrink:0;
+  box-shadow:0 0 16px rgba(123,97,255,.4);
+}
+.tg-name{font-size:14px;font-weight:700}
+.tg-online{font-size:11px;color:var(--ok)}
+.tg-msg{
+  background:rgba(139,127,212,.1);border:1px solid rgba(139,127,212,.12);
+  border-radius:14px 14px 14px 4px;padding:13px 15px;margin-bottom:8px;
+}
+.tg-lbl{font-size:10px;font-weight:700;color:var(--lav);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.tg-txt{font-size:13px;color:var(--text);line-height:1.65}
+.tg-txt strong{color:#C4BEE8}
+.tg-time{font-size:11px;color:var(--t3);text-align:right;margin-top:6px}
+
+/* ===== СОДЕРЖАНИЕ ===== */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.rc{
+  background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.1);
+  border-radius:14px;padding:1.1rem 1.25rem;
+  display:flex;align-items:flex-start;gap:12px;transition:all .25s;
+}
+.rc:hover{background:rgba(139,127,212,.08);border-color:rgba(139,127,212,.3);transform:translateY(-2px);box-shadow:0 0 25px rgba(139,127,212,.15)}
+.ri{
+  width:38px;height:38px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(123,97,255,.25),rgba(0,198,255,.15));
+  border:1px solid rgba(139,127,212,.25);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.rt strong{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+.rt span{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* ===== АВТОР ===== */
+.story{
+  background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.12);
+  border-radius:22px;padding:2rem;display:flex;gap:2rem;align-items:flex-start;
+}
+.story-photo-wrap{
+  flex-shrink:0;width:110px;height:110px;border-radius:50%;overflow:hidden;
+  border:2px solid rgba(139,127,212,.4);
+  box-shadow:0 0 30px rgba(139,127,212,.25);
+  cursor:pointer;transition:all .3s;position:relative;
+}
+.story-photo-wrap:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(139,127,212,.4)}
+.story-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.story-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,11,30,.5);opacity:0;transition:opacity .25s;border-radius:50%;font-size:20px}
+.story-photo-wrap:hover .story-zoom{opacity:1}
+.story-t{font-size:14px;color:var(--t2);line-height:1.7}
+.story-t strong{display:block;font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
+.story-name{font-size:12px;color:var(--t3);margin-top:10px;font-style:italic}
+.lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.88);backdrop-filter:blur(16px);align-items:center;justify-content:center;cursor:pointer}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:90vh;border-radius:16px;object-fit:contain}
+
+/* ===== ОТЗЫВЫ ===== */
 .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.rev{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:12px;transition:all .25s}
-.rev:hover{background:var(--s2);box-shadow:0 0 40px rgba(139,127,212,.1)}
-.rbub{background:rgba(139,127,212,.1);border-radius:14px 14px 14px 4px;padding:13px 15px;font-size:13px;color:var(--text);line-height:1.65;font-style:italic}
-.rmeta{display:flex;align-items:center;gap:8px}
-.rav{width:28px;height:28px;border-radius:50%;background:var(--acl);border:1px solid rgba(139,127,212,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--lav)}
+.rev{
+  background:rgba(255,255,255,.03);border:1px solid rgba(139,127,212,.1);
+  border-radius:18px;padding:1.5rem;display:flex;flex-direction:column;gap:12px;transition:all .25s;
+}
+.rev:hover{background:rgba(139,127,212,.07);box-shadow:0 0 30px rgba(139,127,212,.12);transform:translateY(-2px)}
+.rbub{
+  background:rgba(139,127,212,.1);border:1px solid rgba(139,127,212,.1);
+  border-radius:14px 14px 14px 4px;padding:13px 15px;
+  font-size:13px;color:var(--text);line-height:1.65;font-style:italic;
+}
+.rmeta{display:flex;align-items:center;gap:10px}
+.rav{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(139,127,212,.3),rgba(0,198,255,.2));
+  border:1px solid rgba(139,127,212,.3);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--lav);
+}
 .rname{font-size:12px;color:var(--t3)}
 
-/* FAQ */
-.faq{border-bottom:1px solid var(--bd);padding:1.25rem 0;cursor:pointer;user-select:none}
+/* ===== СРАВНЕНИЕ ===== */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vc{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:18px;padding:1.5rem}
+.vc.good{background:rgba(139,127,212,.07);border-color:rgba(139,127,212,.25)}
+.vt{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.vt.good{color:var(--ac)}
+.vl{list-style:none;font-size:13px;color:var(--t2)}
+.vl li{padding:6px 0;display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.04)}
+.vl li:last-child{border-bottom:none}
+.vl-minus{color:var(--t3);flex-shrink:0}
+.vl-arrow{color:#7B61FF;flex-shrink:0}
+
+/* ===== О ТЕСТЕ ===== */
+.mbox{
+  background:rgba(255,248,200,.03);border:1px solid rgba(244,200,66,.12);
+  border-radius:18px;padding:1.75rem;
+}
+.mbox p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:10px}
+.mbox p:last-child{margin:0;font-size:13px;color:var(--t3);font-style:italic}
+
+/* ===== FAQ ===== */
+.faq{border-bottom:1px solid rgba(255,255,255,.06);padding:1.25rem 0;cursor:pointer;user-select:none}
 .faq:last-child{border-bottom:none}
 .fq{font-size:15px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
 .fq-plus{font-size:20px;color:var(--ac);flex-shrink:0;transition:transform .25s;display:inline-block}
 .faq.open .fq-plus{transform:rotate(45deg)}
 .fa{font-size:14px;color:var(--t2);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .35s ease,margin .35s}
-.faq.open .fa{max-height:200px;margin-top:10px}
+.faq.open .fa{max-height:220px;margin-top:10px}
 
-/* ФИНАЛЬНЫЙ CTA */
-.fcta{padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,#13111C,#1a1730)}
-.fcta::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(139,127,212,.12),transparent 70%)}
-.fcta h2{font-size:clamp(22px,4vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem;background:linear-gradient(135deg,#F0EEF8,#8B7FD4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+/* ===== ФИНАЛ ===== */
+.fcta{
+  padding:7rem 2rem;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(13,11,30,1),rgba(20,10,50,.8));
+}
+.fcta::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(123,97,255,.15),transparent 65%);
+}
+.fcta h2{
+  font-size:clamp(22px,4vw,38px);font-weight:900;letter-spacing:-.02em;margin-bottom:1rem;
+  background:linear-gradient(135deg,#F0EEF8 0%,#C4BEE8 50%,#7B61FF 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  position:relative;
+}
 .fcta p{font-size:16px;color:var(--t2);margin-bottom:2rem;position:relative;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7}
 .fcta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
 
-.legal{text-align:center;padding:1.5rem 2rem;font-size:12px;color:var(--t3);border-top:1px solid var(--bd);line-height:1.7}
+.legal{text-align:center;padding:1.5rem 2rem;font-size:12px;color:var(--t3);border-top:1px solid rgba(255,255,255,.05);line-height:1.7}
 .legal a{color:var(--ac);text-decoration:none}
 
-/* МОБИЛКА */
+/* ===== МОБИЛКА ===== */
 @media(max-width:768px){
   nav{padding:.75rem 1.25rem}
   .nav-tg{display:none}
-  .banner img{max-height:300px;object-position:center}
   .hero-cta{padding:1.75rem 1.25rem}
   .cta-btns{flex-direction:column;width:100%}
-  .btn-main,.btn-tg{justify-content:center;text-align:center}
+  .btn-main,.btn-tg{justify-content:center}
+  .stats-grid{grid-template-columns:1fr}
+  .stats-section{padding:3rem 1.25rem}
   .sec{padding:3.5rem 1.25rem}
-  .sec-alt .sec{padding:3.5rem 1.25rem}
+  .sec-dark .sec{padding:3.5rem 1.25rem}
   .vs{grid-template-columns:1fr}
   .story{flex-direction:column;align-items:center;text-align:center}
   .story-photo-wrap{width:90px;height:90px}
   .pricing{grid-template-columns:1fr}
-  .pfor{min-height:auto}
   .fcta{padding:4rem 1.25rem}
   .fcta-btns{flex-direction:column;align-items:center}
   .banner2-btns{flex-direction:column;width:100%;max-width:320px}
@@ -297,7 +458,9 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
   .banner2-cta{padding:1.75rem 1.25rem}
 }
 @media(max-width:480px){
-  .banner img{max-height:240px}
+  .stats-grid{grid-template-columns:1fr}
+  .stat-card{padding:1.5rem 1rem}
+  .stat-num{font-size:36px}
 }
 </style>
 </head>
@@ -315,28 +478,51 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
   <img src="Автор_Татьяна.png" alt="Татьяна">
 </div>
 
-<!-- ПЕРВЫЙ БАННЕР -->
+<!-- БАННЕР 1 -->
 <div class="banner">
   <img src="banner1.png" alt="ПрофТест — узнай свои сильные стороны">
 </div>
 
-<!-- CTA ПОД ПЕРВЫМ БАННЕРОМ -->
+<!-- CTA -->
 <div class="hero-cta">
   <div class="cta-btns">
     <a href="/test" class="btn-main">▶ Пройти тест на сайте</a>
     <a href="https://t.me/proftest_ru_bot" class="btn-tg">✈ Пройти в Telegram</a>
   </div>
-  <p class="cta-note">10 минут · результат сразу · от 490 ₽</p>
+  <p class="cta-note">10 минут · результат сразу</p>
 </div>
 
 <div class="proof">
   Первые прохождения: подростки из <strong>Мончегорска · Мурманска</strong> — совпадение по ощущениям <strong>~80%</strong>
 </div>
 
+<!-- ЦИФРЫ -->
+<div class="stats-section reveal">
+  <div class="stats-grid">
+    <div class="stat-card purple">
+      <span class="stat-icon"><img src="Мозг.png" alt="" style="width:64px;height:64px;object-fit:contain"></span>
+      <span class="stat-num">5</span>
+      <span class="stat-label">типов личности RISAC</span>
+    </div>
+    <div class="stat-card blue">
+      <span class="stat-icon"><img src="портфель.png" alt="" style="width:64px;height:64px;object-fit:contain"></span>
+      <span class="stat-num">7</span>
+      <span class="stat-label">профессий в отчёте</span>
+    </div>
+    <div class="stat-card gold">
+      <span class="stat-icon"><img src="график.png" alt="" style="width:64px;height:64px;object-fit:contain"></span>
+      <span class="stat-num">9</span>
+      <span class="stat-label">страниц разбора</span>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
 <!-- БОЛИ -->
-<div class="sec-alt">
-<div class="sec">
-  <p class="lbl">Узнаёте себя?</p>
+<div class="sec-dark">
+<div class="sec reveal">
+  <span class="lbl">Узнаёте себя?</span>
   <h2 class="ttl">С этим чаще всего приходят</h2>
   <p class="stl">Родители и подростки — с разными словами об одном и том же</p>
   <div class="pain-grid">
@@ -346,171 +532,18 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
     <div class="pain"><span class="pain-q">"</span>До поступления меньше года — а направления всё ещё нет</div>
   </div>
   <div class="ok-box">
-    <p class="ok-title">И это нормально</p>
-    <p class="ok-text">Большинство подростков в 13–17 лет не знают кем хотят стать. Это не лень и не отсутствие цели — в этом возрасте сложно увидеть свои сильные стороны со стороны. Именно для этого и нужен взгляд извне.</p>
-  </div>
-  <div class="story">
-    <div class="story-photo-wrap" onclick="document.getElementById('lb').classList.add('open')">
-      <img src="Автор_Татьяна.png" alt="Татьяна, автор проекта">
-      <div class="story-zoom">🔍</div>
-    </div>
-    <div class="story-t">
-      <strong>Почему я создала этот тест</strong>
-      Я мама двоих детей. Когда дочь не смогла ответить на вопрос «кем хочешь стать» — я начала искать инструмент который даст не общие слова, а конкретный персональный анализ. Не нашла — и создала сама. Дочь прошла первой.
-      <p class="story-name">Татьяна, Мончегорск · автор проекта</p>
-    </div>
+    <p class="ok-title">✓ И это нормально</p>
+    <p class="ok-text">Большинство подростков в 13–17 лет не знают кем хотят стать. Это не лень — в этом возрасте сложно увидеть свои сильные стороны со стороны. Именно для этого нужен взгляд извне.</p>
   </div>
 </div>
 </div>
 
 <div class="div"></div>
 
-<!-- ПОСЛЕ ТЕСТА -->
-<div class="sec">
-  <p class="lbl">После теста</p>
-  <h2 class="ttl">Подростку становится проще</h2>
-  <p class="stl">Не «кем быть» — а понять себя и найти направление</p>
-  <div class="after-grid">
-    <div class="after"><span class="check">✓</span>Объяснить что ему реально интересно — не только себе, но и родителям</div>
-    <div class="after"><span class="check">✓</span>Понять почему так сложно выбирать — и это не его вина</div>
-    <div class="after"><span class="check">✓</span>Увидеть сильные стороны которые он сам не замечает</div>
-    <div class="after"><span class="check">✓</span>Выбрать что попробовать дальше — без давления и паники</div>
-  </div>
-</div>
-
-<div class="div"></div>
-
-<!-- СРАВНЕНИЕ -->
-<div class="sec-alt">
-<div class="sec">
-  <p class="lbl">Сравнение</p>
-  <h2 class="ttl">Почему это не «тест на 20 профессий»</h2>
-  <p class="stl">Чем этот разбор отличается от бесплатных тестов из интернета</p>
-  <div class="vs">
-    <div class="vc">
-      <p class="vt">Обычные тесты</p>
-      <ul class="vl">
-        <li><span class="vl-minus">—</span>Шаблонный список — одинаковый для тысяч людей</li>
-        <li><span class="vl-minus">—</span>Не объясняют почему эти профессии</li>
-        <li><span class="vl-minus">—</span>Не показывают слабые стороны</li>
-        <li><span class="vl-minus">—</span>Не учитывают твой город и вузы рядом</li>
-        <li><span class="vl-minus">—</span>Нет честных минусов у профессий</li>
-      </ul>
-    </div>
-    <div class="vc good">
-      <p class="vt good">ПрофТест</p>
-      <ul class="vl">
-        <li><span class="vl-arrow">→</span>Анализ конкретных твоих ответов</li>
-        <li><span class="vl-arrow">→</span>Профессии с объяснением почему именно тебе</li>
-        <li><span class="vl-arrow">→</span>Честный блок «что может даваться тяжело»</li>
-        <li><span class="vl-arrow">→</span>Вузы рядом с твоим городом</li>
-        <li><span class="vl-arrow">→</span>Конкретные действия прямо сейчас</li>
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="div"></div>
-
-<!-- КАК РАБОТАЕТ -->
-<div class="sec" id="how">
-  <p class="lbl">Процесс</p>
-  <h2 class="ttl">Как это работает</h2>
-  <p class="stl">Три шага — и у вас на руках персональный разбор</p>
-  <div class="steps">
-    <div class="step"><div class="sn">1</div><p class="st">Отвечаешь на вопросы</p><p class="sd">20 вопросов про то как ты думаешь и что тебя заряжает. Не про профессии — про тебя.</p></div>
-    <div class="step"><div class="sn">2</div><p class="st">Система анализирует</p><p class="sd">Анализируются поведенческие паттерны — поэтому отчёт конкретный, а не общий для всех.</p></div>
-    <div class="step"><div class="sn">3</div><p class="st">Получаешь разбор</p><p class="sd">Персональный PDF-отчёт — на сайте или в Telegram. Сохрани, он твой навсегда.</p></div>
-  </div>
-</div>
-
-<div class="div"></div>
-
-<!-- ВТОРОЙ БАННЕР -->
-<div class="banner">
-  <img src="banner2.png" alt="Что ты получишь в отчёте ПрофТест">
-</div>
-
-<!-- CTA ПОД ВТОРЫМ БАННЕРОМ -->
-<div class="banner2-cta">
-  <p class="banner2-title">Выбери свой вариант и начни прямо сейчас</p>
-  <div class="banner2-btns">
-    <a href="/test" class="btn-basic">7–9 класс — 490 ₽ →</a>
-    <a href="/test" class="btn-senior">10–11 класс — 690 ₽ →</a>
-  </div>
-  <p class="banner2-note">Также доступно в <a href="https://t.me/proftest_ru_bot" style="color:var(--ac);text-decoration:none">Telegram →</a></p>
-</div>
-
-<div class="div"></div>
-
-<!-- ПРИМЕР ОТЧЁТА -->
-<div class="sec-alt">
-<div class="sec">
-  <p class="lbl">Пример отчёта</p>
-  <h2 class="ttl">Вот как это выглядит</h2>
-  <p class="stl">Реальные фрагменты — имена изменены</p>
-  <div class="tg-mock">
-    <div class="tg-head">
-      <div class="tg-av">П</div>
-      <div><div class="tg-name">ПрофТест</div><div class="tg-online">● online</div></div>
-    </div>
-    <div class="tg-msg">
-      <div class="tg-lbl">Твой профиль</div>
-      <div class="tg-txt">Судя по результатам, у тебя ярко выражен <strong>исследовательский тип с социальным вектором</strong>. Тебе важно не просто знать как что-то устроено — а понять зачем это людям.</div>
-    </div>
-    <div class="tg-msg">
-      <div class="tg-lbl">Что может даваться тяжело</div>
-      <div class="tg-txt">Тебе сложно сдать работу, которая внутри ещё не готова. <strong>Можешь потратить час на подбор шрифта</strong> — не из-за перфекционизма, а потому что внутри есть ощущение «это ещё не то».</div>
-    </div>
-    <div class="tg-msg">
-      <div class="tg-lbl">Профессии — очень вероятно</div>
-      <div class="tg-txt"><strong>UX-исследователь</strong> — изучаешь как люди взаимодействуют с продуктами. <em>Минус: много документирования.</em><br><br><strong>Клинический психолог</strong> — глубокое понимание человека через науку. <em>Минус: долгая учёба.</em></div>
-    </div>
-    <div class="tg-time">сейчас ✓✓</div>
-  </div>
-</div>
-</div>
-
-<div class="div"></div>
-
-<!-- СОДЕРЖАНИЕ -->
-<div class="sec">
-  <p class="lbl">Содержание</p>
-  <h2 class="ttl">Что будет в отчёте</h2>
-  <p class="stl">Полный анализ — не просто список профессий</p>
-  <div class="rg">
-    <div class="rc"><div class="ri">👤</div><div class="rt"><strong>Профиль личности</strong><span>С живыми примерами из жизни</span></div></div>
-    <div class="rc"><div class="ri">👁</div><div class="rt"><strong>Что показал тест</strong><span>Какие ответы к чему привели</span></div></div>
-    <div class="rc"><div class="ri">⚡</div><div class="rt"><strong>Что может даваться тяжело</strong><span>Честно — не только плюсы</span></div></div>
-    <div class="rc"><div class="ri">💼</div><div class="rt"><strong>Профессии трёх уровней</strong><span>С минусами каждой</span></div></div>
-    <div class="rc"><div class="ri">↗</div><div class="rt"><strong>Два пути внутри профиля</strong><span>Развилки под твои склонности</span></div></div>
-    <div class="rc"><div class="ri">🎓</div><div class="rt"><strong>Вузы рядом с тобой</strong><span>В твоём городе и рядом</span></div></div>
-    <div class="rc"><div class="ri">🧠</div><div class="rt"><strong>Как ты принимаешь решения</strong><span>Почему сложнее или проще</span></div></div>
-    <div class="rc"><div class="ri">→</div><div class="rt"><strong>Что сделать прямо сейчас</strong><span>Конкретные курсы и действия</span></div></div>
-  </div>
-</div>
-
-<div class="div"></div>
-
-<!-- О ТЕСТЕ -->
-<div class="sec-alt">
-<div class="sec">
-  <p class="lbl">О тесте</p>
-  <h2 class="ttl">Честно о том как он создан</h2>
-  <div class="mbox">
-    <p>Тест разработан авторами проекта на основе подходов профориентационной психологии и анализа поведенческих паттернов в ответах подростков. При создании использовались идеи теории профессиональных типов Голланда и типологии профессий Климова, адаптированные под современный формат AI-анализа.</p>
-    <p>Тест не является официальной психодиагностической методикой и не заменяет консультацию специалиста.</p>
-  </div>
-</div>
-</div>
-
-<div class="div"></div>
-
-<!-- ТАРИФЫ -->
-<div class="sec">
-  <p class="lbl">Тарифы</p>
-  <h2 class="ttl">Стоимость</h2>
+<!-- ТАРИФЫ — СРАЗУ ПОСЛЕ БОЛЕЙ -->
+<div class="sec reveal">
+  <span class="lbl">Стоимость</span>
+  <h2 class="ttl">Выбери свой вариант</h2>
   <p class="stl">Разово, без подписки. Чек приходит автоматически.</p>
   <div class="pricing-hint">
     <div class="pricing-hint-item">
@@ -519,7 +552,7 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
     </div>
     <div class="pricing-hint-item">
       <div class="hint-dot senior"></div>
-      <span style="color:#B87EFF">10–11 класс</span>&nbsp;<span style="color:var(--t3)">— поступление близко, нужна ясность</span>
+      <span style="color:#B87EFF">10–11 класс</span>&nbsp;<span style="color:var(--t3)">— поступление близко</span>
     </div>
   </div>
   <div class="pricing">
@@ -531,12 +564,12 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
         </div>
         <p class="pname">Базовый</p>
         <div class="pamt-row"><span class="pamt">490</span><span class="pamt-cur">₽</span></div>
-        <p class="pfor">Понять общее направление и убрать часть тревоги — поступление ещё не скоро</p>
+        <p class="pfor">Понять общее направление и убрать тревогу — поступление ещё не скоро</p>
         <ul class="plist">
-          <li><span class="vl-arrow">→</span>Профиль личности с живыми примерами</li>
-          <li><span class="vl-arrow">→</span>Профессии трёх уровней с минусами</li>
-          <li><span class="vl-arrow">→</span>Вузы в твоём городе</li>
-          <li><span class="vl-arrow">→</span>Что попробовать прямо сейчас</li>
+          <li><span class="parr">→</span>Профиль личности с живыми примерами</li>
+          <li><span class="parr">→</span>Профессии трёх уровней с минусами</li>
+          <li><span class="parr">→</span>Вузы в твоём городе</li>
+          <li><span class="parr">→</span>Что попробовать прямо сейчас</li>
         </ul>
         <a href="/test" class="pcta">Пройти тест — 490 ₽ →</a>
       </div>
@@ -552,11 +585,11 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
         <div class="pamt-row"><span class="pamt">690</span><span class="pamt-cur">₽</span></div>
         <p class="pfor">Поступление близко — нужно выбирать ЕГЭ и разобраться между вариантами</p>
         <ul class="plist">
-          <li><span class="vl-arrow">→</span>Всё из базового</li>
-          <li><span class="vl-arrow">→</span>Как ты принимаешь решения</li>
-          <li><span class="vl-arrow">→</span>В какой среде раскрываешься</li>
-          <li><span class="vl-arrow">→</span>Два пути внутри профиля</li>
-          <li><span class="vl-arrow">→</span>Карьерные развилки и ЕГЭ</li>
+          <li><span class="parr">→</span>Всё из базового</li>
+          <li><span class="parr">→</span>Как ты принимаешь решения</li>
+          <li><span class="parr">→</span>В какой среде раскрываешься</li>
+          <li><span class="parr">→</span>Два пути внутри профиля</li>
+          <li><span class="parr">→</span>Карьерные развилки и ЕГЭ</li>
         </ul>
         <a href="/test" class="pcta">Пройти тест — 690 ₽ →</a>
       </div>
@@ -566,10 +599,143 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
 
 <div class="div"></div>
 
+<!-- БАННЕР 2 -->
+<div class="banner reveal">
+  <img src="banner2.png" alt="Что ты получишь в отчёте">
+</div>
+
+<!-- CTA под баннером 2 -->
+<div class="banner2-cta">
+  <p class="banner2-title">Начни прямо сейчас</p>
+  <div class="banner2-btns">
+    <a href="/test" class="btn-basic">7–9 класс — 490 ₽ →</a>
+    <a href="/test" class="btn-senior">10–11 класс — 690 ₽ →</a>
+  </div>
+  <p class="banner2-note">Также в <a href="https://t.me/proftest_ru_bot" style="color:var(--ac);text-decoration:none">Telegram →</a></p>
+</div>
+
+<div class="div"></div>
+
+<!-- КАК РАБОТАЕТ -->
+<div class="sec-dark">
+<div class="sec reveal" id="how">
+  <span class="lbl">Процесс</span>
+  <h2 class="ttl">Как это работает</h2>
+  <p class="stl">Три шага — и у вас на руках персональный разбор</p>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><p class="st">Отвечаешь на вопросы</p><p class="sd">20 вопросов про то как ты думаешь и что тебя заряжает. Не про профессии — про тебя.</p></div>
+    <div class="step"><div class="sn">2</div><p class="st">Система анализирует</p><p class="sd">Анализируются поведенческие паттерны — поэтому отчёт конкретный, а не общий для всех.</p></div>
+    <div class="step"><div class="sn">3</div><p class="st">Получаешь разбор</p><p class="sd">Персональный PDF-отчёт — на сайте или в Telegram. Сохрани, он твой навсегда.</p></div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- ПРИМЕР ОТЧЁТА -->
+<div class="sec reveal">
+  <span class="lbl">Пример отчёта</span>
+  <h2 class="ttl">Вот как это выглядит</h2>
+  <p class="stl">Реальные фрагменты — имена изменены</p>
+  <div class="tg-mock">
+    <div class="tg-head">
+      <div class="tg-av">П</div>
+      <div><div class="tg-name">ПрофТест</div><div class="tg-online">● online</div></div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Твой профиль</div>
+      <div class="tg-txt">Судя по результатам, у тебя ярко выражен <strong>исследовательский тип с социальным вектором</strong>. Тебе важно не просто знать как что-то устроено — а понять зачем это людям.</div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Что может даваться тяжело</div>
+      <div class="tg-txt">Тебе сложно сдать работу которая внутри ещё не готова. <strong>Можешь потратить час на подбор шрифта</strong> — не из-за перфекционизма, а потому что внутри есть ощущение «это ещё не то».</div>
+    </div>
+    <div class="tg-msg">
+      <div class="tg-lbl">Профессии — очень вероятно</div>
+      <div class="tg-txt"><strong>UX-исследователь</strong> — изучаешь как люди взаимодействуют с продуктами. <em>Минус: много документирования.</em><br><br><strong>Клинический психолог</strong> — глубокое понимание человека через науку. <em>Минус: долгая учёба.</em></div>
+    </div>
+    <div class="tg-time">сейчас ✓✓</div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- СОДЕРЖАНИЕ -->
+<div class="sec-dark">
+<div class="sec reveal">
+  <span class="lbl">Содержание</span>
+  <h2 class="ttl">Что будет в отчёте</h2>
+  <p class="stl">Полный анализ — не просто список профессий</p>
+  <div class="rg">
+    <div class="rc"><div class="ri">👤</div><div class="rt"><strong>Профиль личности</strong><span>С живыми примерами из жизни</span></div></div>
+    <div class="rc"><div class="ri">👁</div><div class="rt"><strong>Что показал тест</strong><span>Какие ответы к чему привели</span></div></div>
+    <div class="rc"><div class="ri">⚡</div><div class="rt"><strong>Что может даваться тяжело</strong><span>Честно — не только плюсы</span></div></div>
+    <div class="rc"><div class="ri">💼</div><div class="rt"><strong>Профессии трёх уровней</strong><span>С минусами каждой</span></div></div>
+    <div class="rc"><div class="ri">↗</div><div class="rt"><strong>Два пути внутри профиля</strong><span>Развилки под твои склонности</span></div></div>
+    <div class="rc"><div class="ri">🎓</div><div class="rt"><strong>Вузы рядом с тобой</strong><span>В твоём городе и рядом</span></div></div>
+    <div class="rc"><div class="ri">🧠</div><div class="rt"><strong>Как ты принимаешь решения</strong><span>Почему сложнее или проще</span></div></div>
+    <div class="rc"><div class="ri">🚀</div><div class="rt"><strong>Что сделать прямо сейчас</strong><span>Конкретные курсы и действия</span></div></div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
+<!-- СРАВНЕНИЕ -->
+<div class="sec reveal">
+  <span class="lbl">Сравнение</span>
+  <h2 class="ttl">Почему это не «тест на 20 профессий»</h2>
+  <p class="stl">Чем этот разбор отличается от бесплатных тестов</p>
+  <div class="vs">
+    <div class="vc">
+      <p class="vt">Обычные тесты</p>
+      <ul class="vl">
+        <li><span class="vl-minus">—</span>Шаблонный список — одинаковый для всех</li>
+        <li><span class="vl-minus">—</span>Не объясняют почему эти профессии</li>
+        <li><span class="vl-minus">—</span>Не показывают слабые стороны</li>
+        <li><span class="vl-minus">—</span>Не учитывают город и вузы рядом</li>
+        <li><span class="vl-minus">—</span>Нет честных минусов у профессий</li>
+      </ul>
+    </div>
+    <div class="vc good">
+      <p class="vt good">ПрофТест</p>
+      <ul class="vl">
+        <li><span class="vl-arrow">→</span>Анализ конкретных твоих ответов</li>
+        <li><span class="vl-arrow">→</span>Профессии с объяснением почему тебе</li>
+        <li><span class="vl-arrow">→</span>Честный блок «что может даваться тяжело»</li>
+        <li><span class="vl-arrow">→</span>Вузы рядом с твоим городом</li>
+        <li><span class="vl-arrow">→</span>Конкретные действия прямо сейчас</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- ОБ АВТОРЕ -->
+<div class="sec-dark">
+<div class="sec reveal">
+  <span class="lbl">Об авторе</span>
+  <h2 class="ttl">Почему я создала этот тест</h2>
+  <div class="story">
+    <div class="story-photo-wrap" onclick="document.getElementById('lb').classList.add('open')">
+      <img src="Автор_Татьяна.png" alt="Татьяна">
+      <div class="story-zoom">🔍</div>
+    </div>
+    <div class="story-t">
+      <strong>Татьяна, Мончегорск · автор проекта</strong>
+      Я мама двоих детей. Когда дочь не смогла ответить на вопрос «кем хочешь стать» — я начала искать инструмент который даст не общие слова, а конкретный персональный анализ. Не нашла — и создала сама. Дочь прошла первой.
+      <p class="story-name">Нажми на фото чтобы увеличить</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="div"></div>
+
 <!-- ОТЗЫВЫ -->
-<div class="sec-alt">
-<div class="sec">
-  <p class="lbl">Отзывы</p>
+<div class="sec reveal">
+  <span class="lbl">Отзывы</span>
   <h2 class="ttl">Первые прохождения</h2>
   <p class="stl">Подростки из Мончегорска</p>
   <div class="rev-grid">
@@ -583,40 +749,26 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
     </div>
   </div>
 </div>
-</div>
 
 <div class="div"></div>
 
 <!-- FAQ -->
-<div class="sec">
-  <p class="lbl">FAQ</p>
+<div class="sec-dark">
+<div class="sec reveal">
+  <span class="lbl">FAQ</span>
   <h2 class="ttl">Частые вопросы</h2>
-  <div class="faq">
-    <p class="fq">Чем это отличается от бесплатных тестов?<span class="fq-plus">+</span></p>
-    <p class="fa">Бесплатные тесты выдают шаблонный список профессий одинаковый для всех. Здесь анализируются конкретные твои ответы — отчёт учитывает сочетание склонностей, город и даёт честные минусы по каждой профессии.</p>
-  </div>
-  <div class="faq">
-    <p class="fq">Мои данные в безопасности?<span class="fq-plus">+</span></p>
-    <p class="fa">Собираем только имя, класс и город — для персонализации. Данные не передаются третьим лицам. Работаем по 152-ФЗ.</p>
-  </div>
-  <div class="faq">
-    <p class="fq">Подросток младше 18 — можно проходить?<span class="fq-plus">+</span></p>
-    <p class="fa">Да. Начиная тест, родитель или подросток подтверждает согласие на обработку данных от своего имени или от имени ребёнка.</p>
-  </div>
-  <div class="faq">
-    <p class="fq">Тест гарантирует что подросток определится с профессией?<span class="fq-plus">+</span></p>
-    <p class="fa">Нет — и ни один тест в мире этого не гарантирует. Тест даёт направление, конкретные идеи и снижает тревогу. Выбор профессии — это процесс который требует времени и практики.</p>
-  </div>
-  <div class="faq">
-    <p class="fq">Как оплатить?<span class="fq-plus">+</span></p>
-    <p class="fa">Оплата картой через защищённый сервис ЮKassa. Чек приходит автоматически. Никаких подписок — разовый платёж.</p>
-  </div>
+  <div class="faq"><p class="fq">Чем это отличается от бесплатных тестов?<span class="fq-plus">+</span></p><p class="fa">Бесплатные тесты выдают шаблонный список профессий одинаковый для всех. Здесь анализируются конкретные твои ответы — отчёт учитывает сочетание склонностей, город и даёт честные минусы по каждой профессии.</p></div>
+  <div class="faq"><p class="fq">Мои данные в безопасности?<span class="fq-plus">+</span></p><p class="fa">Собираем только имя, класс и город — для персонализации. Данные не передаются третьим лицам. Работаем по 152-ФЗ.</p></div>
+  <div class="faq"><p class="fq">Подросток младше 18 — можно проходить?<span class="fq-plus">+</span></p><p class="fa">Да. Начиная тест, родитель или подросток подтверждает согласие на обработку данных от своего имени или от имени ребёнка.</p></div>
+  <div class="faq"><p class="fq">Тест гарантирует что подросток определится с профессией?<span class="fq-plus">+</span></p><p class="fa">Нет — и ни один тест в мире этого не гарантирует. Тест даёт направление, конкретные идеи и снижает тревогу. Выбор профессии — это процесс который требует времени и практики.</p></div>
+  <div class="faq"><p class="fq">Как оплатить?<span class="fq-plus">+</span></p><p class="fa">Оплата картой через защищённый сервис ЮKassa. Чек приходит автоматически. Никаких подписок — разовый платёж.</p></div>
+</div>
 </div>
 
-<!-- ФИНАЛЬНЫЙ CTA -->
-<div class="fcta">
+<!-- ФИНАЛ -->
+<div class="fcta reveal">
   <h2>Иногда подростку нужен не совет —<br>а возможность наконец понять себя</h2>
-  <p>10 минут — и у вас появляется направление, от которого можно отталкиваться дальше.</p>
+  <p>10 минут — и у вас появляется направление от которого можно отталкиваться дальше.</p>
   <div class="fcta-btns">
     <a href="/test" class="btn-main">▶ Пройти тест на сайте</a>
     <a href="https://t.me/proftest_ru_bot" class="btn-tg">✈ Пройти в Telegram</a>
@@ -628,9 +780,18 @@ nav{position:sticky;top:0;z-index:100;padding:.9rem 2rem;display:flex;align-item
 </div>
 
 <script>
+// FAQ
 document.querySelectorAll('.faq').forEach(f=>{
   f.addEventListener('click',()=>f.classList.toggle('open'));
 });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
