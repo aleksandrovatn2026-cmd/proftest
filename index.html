@@ -26,7 +26,7 @@ body{font-family:Manrope,sans-serif;background:var(--bg);color:var(--text);line-
 /* ЧАСТИЦЫ */
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .particle{position:absolute;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
-@keyframes particleFloat{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.3}100%{transform:translateY(-100px) scale(1);opacity:0}}
+@keyframes particleFloat{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}85%{opacity:.5}100%{transform:translateY(-150px) scale(1.2);opacity:0}}
 
 /* АНИМАЦИИ */
 @keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
@@ -76,11 +76,14 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
 .proof{text-align:center;padding:1rem 2rem;background:rgba(123,97,255,.05);border-bottom:1px solid rgba(123,97,255,.1);font-size:13px;color:var(--t3);position:relative;z-index:1}
 .proof strong{color:var(--lav)}
 
-/* TRUST BAR */
-.trust-bar{display:flex;align-items:center;justify-content:center;gap:0;padding:1rem 2rem;background:rgba(123,97,255,.04);border-bottom:1px solid rgba(123,97,255,.08);flex-wrap:wrap;gap:0}
-.trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2);padding:6px 20px;font-weight:500}
-.trust-icon{font-size:16px;flex-shrink:0}
-.trust-sep{width:1px;height:24px;background:rgba(255,255,255,.08);flex-shrink:0}
+/* TRUST BLOCK */
+.trust-block{background:rgba(123,97,255,.05);border-bottom:1px solid rgba(123,97,255,.1);padding:1rem 2rem;display:flex;flex-direction:column;align-items:center;gap:.75rem}
+.trust-proof{font-size:13px;color:var(--t3);text-align:center}
+.trust-proof strong{color:var(--lav)}
+.trust-bar{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t2);padding:4px 18px;font-weight:500}
+.trust-icon{font-size:15px;flex-shrink:0}
+.trust-sep{width:1px;height:20px;background:rgba(255,255,255,.08);flex-shrink:0}
 
 /* DIV */
 .div{height:1px;background:linear-gradient(90deg,transparent,rgba(123,97,255,.2),transparent);position:relative;z-index:1}
@@ -267,7 +270,8 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
 
 /* МОБИЛКА */
 @media(max-width:768px){
-  .trust-bar{flex-direction:column;gap:8px;padding:.75rem 1.25rem}
+  .trust-block{padding:.75rem 1.25rem}
+  .trust-bar{flex-direction:column;gap:6px}
   .trust-sep{display:none}
   .hero-bullets{max-width:100%}
   nav{padding:.75rem 1.25rem}
@@ -326,19 +330,17 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
   </div>
 </div>
 
-<div class="proof">
-  Первые прохождения: подростки из <strong>Мончегорска · Мурманска</strong> — совпадение по ощущениям <strong>~80%</strong>
-</div>
-
-<!-- ДОВЕРИЕ -->
-<div class="trust-bar">
-  <div class="trust-item"><span class="trust-icon">🔬</span><span>На основе теории Голланда и типологии Климова</span></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><span class="trust-icon">🤖</span><span>AI-анализ конкретно твоих ответов</span></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><span class="trust-icon">📄</span><span>9 страниц персонального разбора</span></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><span class="trust-icon">⚡</span><span>Результат за 1-2 минуты после оплаты</span></div>
+<div class="trust-block">
+  <p class="trust-proof">Первые прохождения: подростки из <strong>Мончегорска · Мурманска</strong> — совпадение по ощущениям <strong>~80%</strong></p>
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">🔬</span><span>Теория Голланда и типология Климова</span></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-icon">🤖</span><span>AI-анализ конкретно твоих ответов</span></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-icon">📄</span><span>9 страниц персонального разбора</span></div>
+    <div class="trust-sep"></div>
+    <div class="trust-item"><span class="trust-icon">⚡</span><span>Результат за 1-2 минуты после оплаты</span></div>
+  </div>
 </div>
 
 <div class="div"></div>
@@ -595,18 +597,18 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.
 // Частицы
 const colors=['rgba(123,97,255,','rgba(0,198,255,','rgba(0,230,118,','rgba(255,184,0,'];
 const container=document.getElementById('particles');
-for(let i=0;i<30;i++){
+for(let i=0;i<35;i++){
   const p=document.createElement('div');
   p.className='particle';
   const color=colors[Math.floor(Math.random()*colors.length)];
-  const size=Math.random()*8+4;
+  const size=Math.random()*12+6;
   p.style.cssText=`
     width:${size}px;height:${size}px;
     left:${Math.random()*100}%;
-    background:${color}${Math.random()*.7+.3});
-    animation-duration:${Math.random()*18+12}s;
-    animation-delay:${Math.random()*12}s;
-    box-shadow:0 0 ${size*4}px ${size}px ${color}0.6);
+    background:${color}${Math.random()*.8+.4});
+    animation-duration:${Math.random()*15+10}s;
+    animation-delay:${Math.random()*10}s;
+    box-shadow:0 0 ${size*5}px ${size*2}px ${color}0.5);
   `;
   container.appendChild(p);
 }
