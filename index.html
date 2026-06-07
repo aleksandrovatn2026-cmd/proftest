@@ -521,6 +521,93 @@ nav{position:sticky;top:0;z-index:100;padding:.85rem 2rem;display:flex;align-ite
 
 <div class="div"></div>
 
+<!-- СЛАЙДЕР ОБРАЗЦОВ ОТЧЁТА -->
+<div class="sec reveal" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+  <span class="lbl">Примеры отчёта</span>
+  <h2 class="ttl">Как выглядит твой отчёт</h2>
+  <p style="color:var(--t2);text-align:center;margin-bottom:2rem;font-size:15px">10 страниц · тёмная и светлая версия · PDF на твоё устройство</p>
+
+  <div style="position:relative">
+    <!-- Слайдер -->
+    <div id="slider" style="overflow:hidden;border-radius:16px;box-shadow:0 0 60px rgba(123,97,255,0.3)">
+      <div id="slides" style="display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)">
+        <div class="slide"><img src="sample_dark_cover.jpg" alt="Обложка тёмная" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_dark_risac.jpg" alt="Паутина RISAC" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_dark_jobs.jpg" alt="Профессии" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_dark_actions.jpg" alt="Действия" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_light_cover.jpg" alt="Обложка светлая" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_light_risac.jpg" alt="Паутина светлая" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_light_jobs.jpg" alt="Профессии светлая" style="width:100%;display:block;border-radius:16px"></div>
+        <div class="slide"><img src="sample_light_actions.jpg" alt="Действия светлая" style="width:100%;display:block;border-radius:16px"></div>
+      </div>
+    </div>
+
+    <!-- Стрелки -->
+    <button onclick="slideMove(-1)" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);background:rgba(123,97,255,0.9);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(123,97,255,0.5)">‹</button>
+    <button onclick="slideMove(1)" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);background:rgba(123,97,255,0.9);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(123,97,255,0.5)">›</button>
+  </div>
+
+  <!-- Подписи и точки -->
+  <div style="text-align:center;margin-top:1.2rem">
+    <div id="slide-label" style="font-size:13px;color:var(--t2);margin-bottom:10px">🌙 Обложка · тёмная версия</div>
+    <div id="dots" style="display:flex;justify-content:center;gap:8px"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const labels = [
+    '🌙 Обложка · тёмная версия',
+    '🌙 Паутина RISAC · тёмная версия',
+    '🌙 Профессии · тёмная версия',
+    '🌙 Действия · тёмная версия',
+    '☀️ Обложка · светлая версия',
+    '☀️ Паутина RISAC · светлая версия',
+    '☀️ Профессии · светлая версия',
+    '☀️ Действия · светлая версия',
+  ];
+  let cur = 0;
+  const slides = document.getElementById('slides');
+  const label = document.getElementById('slide-label');
+  const dotsEl = document.getElementById('dots');
+  const total = labels.length;
+
+  // Создаём точки
+  labels.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.style.cssText = 'width:8px;height:8px;border-radius:50%;background:rgba(123,97,255,0.3);cursor:pointer;transition:all .2s';
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    cur = (n + total) % total;
+    slides.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    label.textContent = labels[cur];
+    [...dotsEl.children].forEach((d, i) => {
+      d.style.background = i === cur ? '#7B61FF' : 'rgba(123,97,255,0.3)';
+      d.style.transform = i === cur ? 'scale(1.4)' : 'scale(1)';
+    });
+  }
+
+  window.slideMove = function(dir) { goTo(cur + dir); };
+
+  // Свайп на мобильном
+  let startX = 0;
+  slides.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  slides.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) slideMove(diff > 0 ? 1 : -1);
+  });
+
+  // Автоплей
+  setInterval(() => slideMove(1), 4000);
+
+  goTo(0);
+})();
+</script>
+
+
 <!-- 10. ОТЗЫВЫ -->
 <div class="rev-wrap">
 <div class="sec reveal">
