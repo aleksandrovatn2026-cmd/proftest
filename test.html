@@ -32,10 +32,10 @@ h1.hero{font-family:'Manrope',sans-serif;font-size:clamp(26px,6vw,36px);font-wei
 .stcard{flex:1;background:rgba(255,255,255,0.04);border:2px solid;border-radius:16px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px}
 .stn{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800}
 .stl{font-size:10px;color:var(--t3);text-align:center;line-height:1.3}
-.btn{width:100%;padding:16px 24px;background:transparent;border:3px solid var(--green);border-radius:16px;cursor:pointer;color:var(--green);font-size:17px;font-weight:800;font-family:'Space Grotesk',sans-serif;transition:all .2s;box-shadow:0 0 18px rgba(0,230,118,0.3);letter-spacing:.01em}
-.btn:hover{background:rgba(0,230,118,0.08);transform:translateY(-2px);box-shadow:0 0 32px rgba(0,230,118,0.55)}
+.btn{width:100%;padding:16px 24px;background:transparent;border:3px solid rgba(255,255,255,0.25);border-radius:16px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:17px;font-weight:800;font-family:'Space Grotesk',sans-serif;transition:all .2s;letter-spacing:.01em}
+.btn:hover{background:rgba(255,255,255,0.05);transform:translateY(-2px)}
 .btn:active{transform:none}
-.btn:disabled{background:transparent;border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.28);cursor:not-allowed;transform:none;box-shadow:none}
+.btn:disabled{background:transparent;border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.25);cursor:not-allowed;transform:none;box-shadow:none}
 .btn-pay{width:100%;padding:18px 24px;background:linear-gradient(135deg,#7B61FF,#5533cc);border:3px solid var(--green);border-radius:16px;cursor:pointer;color:#fff;font-size:18px;font-weight:800;font-family:'Space Grotesk',sans-serif;transition:all .2s;box-shadow:0 0 32px rgba(0,230,118,0.5),0 0 22px rgba(123,97,255,0.5);letter-spacing:.01em}
 .btn-pay:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(0,230,118,0.7),0 0 32px rgba(123,97,255,0.7)}
 .btn-pay:active{transform:none}
@@ -171,7 +171,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
       <div class="stcard" style="border-color:#00C48C;box-shadow:0 0 18px rgba(0,196,140,0.4)"><span style="font-size:22px">💼</span><span class="stn" style="color:#00C48C">7 профессий</span><span class="stl">в отчёте</span></div>
       <div class="stcard" style="border-color:#FFB800;box-shadow:0 0 18px rgba(255,184,0,0.4)"><span style="font-size:22px">📄</span><span class="stn" style="color:#FFB800">10 страниц</span><span class="stl">PDF-отчёт</span></div>
     </div>
-    <button class="btn" onclick="showScreen('s-name')">Начать тест →</button>
+    <button class="btn" onclick="showScreen('s-name')" style="border-color:var(--accent);color:var(--accent);box-shadow:0 0 20px rgba(123,97,255,0.4)">Начать тест →</button>
     <p class="hint">20 вопросов · результат сразу · от 490 ₽</p>
     <div class="not-school">
       <span style="color:var(--pink);font-size:15px;font-weight:800">✗</span>
@@ -187,7 +187,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <p class="ssub">Мы обратимся к тебе по имени в отчёте</p>
     <input class="inp" id="ni" placeholder="Твоё имя" autocomplete="off"
       oninput="onTxt(this,'btn-name')" onkeydown="if(event.key==='Enter'&&this.value.trim())showScreen('s-gender')">
-    <button class="btn" id="btn-name" disabled onclick="if(document.getElementById('ni').value.trim())showScreen('s-gender')">Продолжить →</button>
+    <button class="btn" id="btn-name" disabled onclick="if(document.getElementById('ni').value.trim())showScreen('s-gender')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
   </div>
 
   <div class="screen" id="s-gender">
@@ -202,7 +202,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
         <span style="font-size:44px">👧</span><span style="font-size:15px;font-weight:700;color:#FF6B9D">Девочка</span>
       </button>
     </div>
-    <button class="btn" id="btn-gender" disabled onclick="showScreen('s-grade')">Продолжить →</button>
+    <button class="btn" id="btn-gender" disabled onclick="showScreen('s-grade')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
   </div>
 
   <div class="screen" id="s-grade">
@@ -210,7 +210,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <h2 class="stitle">В каком классе?</h2>
     <p class="ssub">Профессии подберутся под твой путь</p>
     <div class="grade-row" id="grade-row"></div>
-    <button class="btn" id="btn-grade" disabled onclick="showScreen('s-city')">Продолжить →</button>
+    <button class="btn" id="btn-grade" disabled onclick="showScreen('s-city')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
   </div>
 
   <div class="screen" id="s-city">
@@ -219,7 +219,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <p class="ssub">Зарплаты в отчёте будут по твоему региону</p>
     <input class="inp" id="ci" placeholder="Например: Москва" autocomplete="off"
       oninput="onTxt(this,'btn-city')" onkeydown="if(event.key==='Enter'&&this.value.trim())beginTest()">
-    <button class="btn" id="btn-city" disabled onclick="beginTest()">Начать тест →</button>
+    <button class="btn" id="btn-city" disabled onclick="beginTest()" style="border-color:var(--teal);color:var(--teal);box-shadow:0 0 20px rgba(0,196,140,0.35)">Начать тест →</button>
     <p class="hint">20 вопросов — около 5 минут</p>
   </div>
 
@@ -277,7 +277,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
       <div class="mrrow" style="margin-bottom:10px"><div class="mrdot" style="background:var(--yellow)"></div><div class="mrlbl">Если не видишь — проверь папку «Спам»</div></div>
       <div class="mrrow"><div class="mrdot" style="background:var(--teal)"></div><div class="mrlbl">Отчёт сохрани — он твой навсегда</div></div>
     </div>
-    <button class="btn" onclick="showScreen('s-review')" style="margin-top:4px">Оставить отзыв →</button>
+    <button class="btn" onclick="showScreen('s-review')" style="margin-top:4px;border-color:var(--yellow);color:var(--yellow);box-shadow:0 0 20px rgba(255,184,0,0.4)">⭐ Оставить отзыв →</button>
     <button class="restartbtn" onclick="showScreen('s-referral')" style="margin-top:4px">Пропустить →</button>
   </div>
 
@@ -308,7 +308,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <div style="font-size:72px;animation:flt 3s ease-in-out infinite">🙏</div>
     <h2 class="stitle" style="text-align:center;color:var(--yellow);text-shadow:0 0 24px rgba(255,184,0,0.5)">Спасибо за отзыв!</h2>
     <p class="ssub" style="text-align:center">Твои слова помогут другим ребятам решиться попробовать</p>
-    <button class="btn" onclick="showScreen('s-referral')" style="border-color:var(--pink);color:var(--pink);box-shadow:0 0 18px rgba(255,107,157,0.35)">Порекомендовать другу 💌</button>
+    <button class="btn" onclick="showScreen('s-referral')" style="border-color:var(--pink);color:var(--pink);box-shadow:0 0 22px rgba(255,107,157,0.45)">Порекомендовать другу 💌</button>
   </div>
 
   <!-- REFERRAL -->
@@ -321,7 +321,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <div style="width:100%;background:rgba(123,97,255,0.08);border:2.5px solid var(--accent);border-radius:20px;padding:20px;box-shadow:0 0 30px rgba(123,97,255,0.3)">
       <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">🔗 Ссылка на тест</div>
       <div style="display:flex;gap:10px;align-items:center">
-        <div style="flex:1;font-size:13px;font-weight:600;color:var(--a2);background:rgba(0,198,255,0.08);border:1.5px solid rgba(0,198,255,0.25);border-radius:12px;padding:12px 14px;word-break:break-all">proftest-podrostki.ru/test</div>
+        <div style="flex:1;font-size:13px;font-weight:600;color:var(--a2);background:rgba(0,198,255,0.08);border:1.5px solid rgba(0,198,255,0.25);border-radius:12px;padding:12px 14px;word-break:break-all">www.proftest-podrostki.ru/test</div>
         <button onclick="copyLink()" id="copy-btn" style="flex-shrink:0;padding:12px 16px;background:rgba(123,97,255,0.2);border:2px solid var(--accent);border-radius:12px;cursor:pointer;color:var(--accent);font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;white-space:nowrap;box-shadow:0 0 14px rgba(123,97,255,0.3)">📋 Скопировать</button>
       </div>
       <div id="copy-done" style="font-size:12px;color:var(--green);margin-top:8px;opacity:0;transition:opacity .3s;font-weight:700">✓ Ссылка скопирована!</div>
@@ -333,7 +333,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
       <button onclick="shareTG()" style="flex:1;padding:14px 8px;background:rgba(0,198,255,0.12);border:2.5px solid var(--a2);border-radius:14px;cursor:pointer;color:var(--a2);font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(0,198,255,0.25)">Telegram</button>
       <button onclick="shareWA()" style="flex:1;padding:14px 8px;background:rgba(0,230,118,0.1);border:2.5px solid var(--green);border-radius:14px;cursor:pointer;color:var(--green);font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(0,230,118,0.22)">WhatsApp</button>
     </div>
-    <a href="https://www.proftest-podrostki.ru" class="btn" style="text-decoration:none;text-align:center;display:block;border-color:var(--teal);color:var(--teal);box-shadow:0 0 16px rgba(0,196,140,0.3)">← На главную</a>
+    <a href="https://www.proftest-podrostki.ru" class="btn" style="text-decoration:none;text-align:center;display:block;border-color:var(--teal);color:var(--teal);box-shadow:0 0 22px rgba(0,196,140,0.4)">← На главную</a>
   </div>
 </div>
 
@@ -564,7 +564,7 @@ function submitReview() {
 }
 
 // ===== ШАРИНГ =====
-var SITE_URL = 'https://www.proftest-podrostki.ru/test';
+var SITE_URL = 'https://www.www.proftest-podrostki.ru/test';
 var SHARE_TEXT = 'Прошёл классный тест на профориентацию — узнал свой тип личности RISAC и 7 профессий под себя. Попробуй!';
 
 function copyLink() {
