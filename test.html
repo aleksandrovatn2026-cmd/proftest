@@ -518,8 +518,43 @@ function pickStyle(s) {
 }
 
 function doPay() {
-  document.getElementById('thanks-email').textContent = document.getElementById('emailinp').value.trim();
-  showScreen('s-thanks');
+  var email = document.getElementById('emailinp').value.trim();
+  var btn = document.getElementById('btn-pay');
+  btn.disabled = true;
+  btn.textContent = '⏳ Создаём платёж...';
+
+  var userPayload = {
+    email: email,
+    style: userData.pdfStyle,
+    grade: parseInt(userData.grade) || 7,
+    user_data: {
+      name: userData.name,
+      gender: userData.gender,
+      grade: userData.grade,
+      city: userData.city,
+      answers: userData.answers,
+      type_name: document.getElementById('resname') ? document.getElementById('resname').textContent : ''
+    }
+  };
+
+  fetch('https://proftest-podrostki.ru/api/create-payment', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(userPayload)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if(data.url){
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Ошибка');
+    }
+  })
+  .catch(function(err){
+    btn.disabled = false;
+    btn.textContent = '💳 Оплатить и получить отчёт →';
+    alert('Ошибка оплаты: ' + err.message + '\nНапишите нам: @proftest_ru_bot');
+  });
 }
 
 function doRestart() {
