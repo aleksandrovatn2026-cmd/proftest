@@ -403,7 +403,6 @@ function pickGender(g) {
   m.style.boxShadow  = g==='male' ? '0 0 30px rgba(0,198,255,0.65)' : '0 0 16px rgba(0,198,255,0.28)';
   f.style.background = g==='female' ? 'rgba(255,107,157,0.26)' : 'rgba(255,107,157,0.12)';
   f.style.boxShadow  = g==='female' ? '0 0 30px rgba(255,107,157,0.65)' : '0 0 16px rgba(255,107,157,0.28)';
-  document.getElementById('btn-gender').disabled = false;
   // Автопереход через 400мс
   setTimeout(function(){ showScreen('s-grade'); }, 400);
 }
@@ -420,7 +419,6 @@ function initGrades() {
       userData.grade = g;
       document.querySelectorAll('.gbtn').forEach(function(x){x.style.background=x.style.borderColor+'1A';x.style.boxShadow='0 0 12px '+x.style.borderColor+'44';x.style.transform='scale(1)';});
       b.style.background = c+'33'; b.style.boxShadow = '0 0 26px '+c+'99'; b.style.transform = 'scale(1.1)';
-      document.getElementById('btn-grade').disabled = false;
       // Автопереход через 400мс
       setTimeout(function(){ showScreen('s-city'); }, 400);
     };
@@ -585,7 +583,7 @@ function doPay() {
 function doRestart() {
   userData = {name:"",gender:null,grade:null,city:"",answers:[],cq:0,sel:null,pdfStyle:"dark"};
   ['ni','ci','emailinp'].forEach(function(id){var el=document.getElementById(id);if(el){el.value='';el.className='inp';}});
-  ['btn-name','btn-gender','btn-grade','btn-city','btn-pay'].forEach(function(id){var el=document.getElementById(id);if(el)el.disabled=true;});
+  ['btn-name','btn-city','btn-pay'].forEach(function(id){var el=document.getElementById(id);if(el)el.disabled=true;});
   document.getElementById('gm').style.cssText='border-color:#00C6FF;background:rgba(0,198,255,0.12);box-shadow:0 0 16px rgba(0,198,255,0.28)';
   document.getElementById('gf').style.cssText='border-color:#FF6B9D;background:rgba(255,107,157,0.12);box-shadow:0 0 16px rgba(255,107,157,0.28)';
   document.getElementById('stydark').classList.add('sel'); document.getElementById('stylight').classList.remove('sel');
