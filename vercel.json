@@ -1,7 +1,7 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/test", "destination": "/test.html" },
-    { "source": "/api/:path*", "destination": "https://proftest-podrostki.ru/api/:path*" }
+    { "source": "/test", "destination": "/test.html" }
   ]
 }
