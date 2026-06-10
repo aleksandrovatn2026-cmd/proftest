@@ -206,7 +206,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
         <span style="font-size:44px">👧</span><span style="font-size:15px;font-weight:700;color:#FF6B9D">Девочка</span>
       </button>
     </div>
-    <button class="btn" id="btn-gender" disabled onclick="showScreen('s-grade')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
+
   </div>
 
   <div class="screen" id="s-grade">
@@ -214,7 +214,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <h2 class="stitle">В каком классе?</h2>
     <p class="ssub">Профессии подберутся под твой путь</p>
     <div class="grade-row" id="grade-row"></div>
-    <button class="btn" id="btn-grade" disabled onclick="showScreen('s-city')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
+
   </div>
 
   <div class="screen" id="s-city">
@@ -562,7 +562,7 @@ function doPay() {
   };
 
   localStorage.setItem('pt_email', email);
-  fetch('http://45.146.167.237:8080/api/create-payment', {
+  fetch('https://proftest-podrostki.ru/api/create-payment', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(userPayload)
