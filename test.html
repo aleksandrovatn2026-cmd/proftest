@@ -560,7 +560,7 @@ function doPay() {
   };
 
   localStorage.setItem('pt_email', email);
-  fetch('/api/create-payment', {
+  fetch('https://api.proftest-podrostki.ru/api/create-payment', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(userPayload)
