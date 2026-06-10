@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080714">
+<meta name="description" content="Профориентационный тест для подростков 7-11 класс. Узнай свой тип личности RISAC и получи персональный PDF-отчёт с профессиями.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-text-size-adjust:100%}
 :root{--bg:#080714;--accent:#7B61FF;--a2:#00C6FF;--green:#00E676;--teal:#00C48C;--yellow:#FFB800;--pink:#FF6B9D;--orange:#FF6B35;--text:#fff;--t2:rgba(255,255,255,0.6);--t3:rgba(255,255,255,0.35)}
-body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;min-height:100vh;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom);-webkit-tap-highlight-color:transparent}
 canvas#ff{position:fixed;inset:0;pointer-events:none;z-index:1}
 #app{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 .hdr{width:100%;max-width:640px;padding:20px 24px 0;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3}
@@ -16,14 +20,14 @@ canvas#ff{position:fixed;inset:0;pointer-events:none;z-index:1}
 .pt{flex:1;height:5px;border-radius:10px;background:rgba(255,255,255,0.08);overflow:hidden}
 .pf{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--a2));transition:width .5s cubic-bezier(.4,0,.2,1)}
 .pl{font-size:12px;font-weight:600;color:var(--t3);white-space:nowrap}
-.screen{width:100%;max-width:560px;padding:28px 24px 48px;display:none;flex-direction:column;align-items:center;gap:18px;position:relative;z-index:3}
+.screen{width:100%;max-width:560px;padding:28px 24px 80px;display:none;flex-direction:column;align-items:center;gap:18px;position:relative;z-index:3}
 .screen.active{display:flex;animation:fu .35s ease}
 @keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 18px rgba(123,97,255,0.35)}50%{box-shadow:0 0 36px rgba(123,97,255,0.65)}}
 .logo-wrap{width:140px;height:140px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}
 .logo-wrap img{width:140px;height:140px;object-fit:contain;animation:flt 3s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(180,80,255,0.8)) drop-shadow(0 0 40px rgba(123,97,255,0.5))}
-.badge{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(123,97,255,0.14);border:1.5px solid rgba(123,97,255,0.4);padding:5px 16px;border-radius:100px}
+.badge{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(123,97,255,0.14);border:1.5px solid rgba(123,97,255,0.4);padding:5px 16px;border-radius:100px}
 h1.hero{font-family:'Manrope',sans-serif;font-size:clamp(26px,6vw,36px);font-weight:800;line-height:1.2;text-align:center}
 .ha{background:linear-gradient(135deg,var(--accent),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-sub{font-size:15px;color:var(--t2);text-align:center;line-height:1.6;max-width:360px}
@@ -31,8 +35,8 @@ h1.hero{font-family:'Manrope',sans-serif;font-size:clamp(26px,6vw,36px);font-wei
 .stats-row{display:flex;gap:10px;width:100%}
 .stcard{flex:1;background:rgba(255,255,255,0.04);border:2px solid;border-radius:16px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px}
 .stn{font-family:'Manrope',sans-serif;font-size:15px;font-weight:800}
-.stl{font-size:10px;color:var(--t3);text-align:center;line-height:1.3}
-.btn{width:100%;padding:16px 24px;background:transparent;border:3px solid rgba(255,255,255,0.25);border-radius:16px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:17px;font-weight:800;font-family:'Space Grotesk',sans-serif;transition:all .2s;letter-spacing:.01em}
+.stl{font-size:11px;color:var(--t3);text-align:center;line-height:1.3}
+.btn{width:100%;padding:16px 24px;background:transparent;touch-action:manipulation;border:3px solid rgba(255,255,255,0.25);border-radius:16px;cursor:pointer;color:rgba(255,255,255,0.7);font-size:17px;font-weight:800;font-family:'Space Grotesk',sans-serif;transition:all .2s;letter-spacing:.01em}
 .btn:hover{background:rgba(255,255,255,0.05);transform:translateY(-2px)}
 .btn:active{transform:none}
 .btn:disabled{background:transparent;border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.25);cursor:not-allowed;transform:none;box-shadow:none}
@@ -44,7 +48,7 @@ h1.hero{font-family:'Manrope',sans-serif;font-size:clamp(26px,6vw,36px);font-wei
 .se{font-size:52px;margin-bottom:2px}
 h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-align:center}
 .ssub{font-size:14px;color:var(--t2);text-align:center;line-height:1.6}
-.inp{width:100%;padding:15px 18px;background:rgba(255,255,255,0.05);border:2.5px solid rgba(123,97,255,0.55);border-radius:14px;color:var(--a2);font-size:17px;font-weight:700;outline:none;font-family:'Space Grotesk',sans-serif;transition:all .2s;box-shadow:0 0 10px rgba(123,97,255,0.15)}
+.inp{width:100%;padding:15px 18px;background:rgba(255,255,255,0.05);border:2.5px solid rgba(123,97,255,0.55);border-radius:14px;color:var(--a2);font-size:17px;max-width:100%;font-weight:700;outline:none;font-family:'Space Grotesk',sans-serif;transition:all .2s;box-shadow:0 0 10px rgba(123,97,255,0.15)}
 .inp::placeholder{color:rgba(255,255,255,0.22);font-weight:400}
 .inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(123,97,255,0.2),0 0 18px rgba(123,97,255,0.25)}
 .inp.typed{border-color:var(--a2);box-shadow:0 0 14px rgba(0,198,255,0.3);color:var(--a2)}
@@ -53,21 +57,21 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
 .gchoice{flex:1;padding:24px 12px;border:2.5px solid;border-radius:20px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .2s;background:transparent;font-family:'Space Grotesk',sans-serif}
 .grade-row{display:flex;gap:8px;width:100%}
 .gbtn{flex:1;padding:18px 4px;border:2.5px solid;border-radius:14px;cursor:pointer;font-size:20px;font-weight:800;font-family:'Manrope',sans-serif;transition:all .2s;background:transparent}
-.qwrap{width:100%;max-width:560px;padding:20px 24px 48px;display:none;flex-direction:column;gap:16px;position:relative;z-index:3}
+.qwrap{width:100%;max-width:560px;padding:20px 24px 48px;display:none;flex-direction:column;gap:16px;position:relative;z-index:3;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .qwrap.active{display:flex;animation:fu .3s ease}
 .qnum{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
 .qtxt{font-family:'Manrope',sans-serif;font-size:clamp(17px,4vw,21px);font-weight:700;line-height:1.45;color:#fff}
 .opts{display:flex;flex-direction:column;gap:9px}
-.optbtn{width:100%;padding:13px 16px;border:2px solid;border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:all .2s;font-family:'Space Grotesk',sans-serif}
+.optbtn{width:100%;padding:13px 16px;border:2px solid;touch-action:manipulation;border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;transition:all .2s;font-family:'Space Grotesk',sans-serif}
 .opte{font-size:22px;flex-shrink:0;width:28px;text-align:center}
 .optl{font-size:14px;font-weight:600;color:#fff;line-height:1.4;flex:1}
 .optck{font-size:12px;font-weight:900;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;transition:opacity .2s}
 .scalerow{display:flex;gap:8px;width:100%}
-.scalebtn{flex:1;padding:14px 6px;border:2.5px solid;border-radius:14px;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s;background:transparent;display:flex;flex-direction:column;align-items:center;gap:5px}
+.scalebtn{flex:1;padding:14px 6px;border:2.5px solid;touch-action:manipulation;border-radius:14px;cursor:pointer;font-family:'Manrope',sans-serif;transition:all .2s;background:transparent;display:flex;flex-direction:column;align-items:center;gap:5px}
 .scalen{font-size:24px;font-weight:800;line-height:1}
 .scalee{font-size:20px;line-height:1}
 .scalelabs{display:flex;justify-content:space-between;padding:0 2px;margin-top:2px}
-.scalelt{font-size:10px;line-height:1.3;max-width:90px}
+.scalelt{font-size:11px;line-height:1.3;max-width:90px}
 .resglow{position:absolute;top:0;left:0;right:0;height:280px;border-radius:0 0 50% 50%;pointer-events:none}
 .resemoji{font-size:80px;animation:flt 3s ease-in-out infinite;margin-bottom:4px;position:relative;z-index:1}
 .ressub{font-size:16px;font-weight:600;color:var(--t2);position:relative;z-index:1}
@@ -80,7 +84,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
 .barfill{height:100%;border-radius:10px;transition:width 1s cubic-bezier(.4,0,.2,1)}
 .barpct{font-size:12px;font-weight:700;width:32px;text-align:right}
 .minirep{width:100%;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
-.mrttl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.mrttl{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
 .mrrow{display:flex;gap:12px;align-items:flex-start}
 .mrdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
 .mrlbl{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.55}
@@ -103,7 +107,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
 .restartbtn:hover{color:var(--t2);border-color:rgba(255,255,255,0.3)}
 .thanksbox{width:100%;border:3px solid var(--green);border-radius:20px;padding:24px;background:rgba(0,230,118,0.05);box-shadow:0 0 32px rgba(0,230,118,0.2)}
 @media(max-width:480px){
-  .screen{padding:20px 16px 36px}
+  .screen{padding:20px 16px 80px}
   .qwrap{padding:16px 16px 36px}
   /* Заголовок теста меньше */
   .qtxt{font-size:16px !important}
@@ -185,8 +189,8 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <div class="se">👋</div>
     <h2 class="stitle">Как тебя зовут?</h2>
     <p class="ssub">Мы обратимся к тебе по имени в отчёте</p>
-    <input class="inp" id="ni" placeholder="Твоё имя" autocomplete="off"
-      oninput="onTxt(this,'btn-name')" onkeydown="if(event.key==='Enter'&&this.value.trim())showScreen('s-gender')">
+    <input class="inp" id="ni" placeholder="Твоё имя" autocomplete="off" autocapitalize="words" inputmode="text"
+      oninput="onTxt(this,'btn-name')" onkeydown="if(event.key==='Enter'&&this.value.trim()){userData.name=this.value.trim();showScreen('s-gender');}">
     <button class="btn" id="btn-name" disabled onclick="if(document.getElementById('ni').value.trim())showScreen('s-gender')" style="border-color:var(--a2);color:var(--a2);box-shadow:0 0 20px rgba(0,198,255,0.35)">Продолжить →</button>
   </div>
 
@@ -217,7 +221,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
     <div class="se">🏙️</div>
     <h2 class="stitle">Из какого ты города?</h2>
     <p class="ssub">Зарплаты в отчёте будут по твоему региону</p>
-    <input class="inp" id="ci" placeholder="Например: Москва" autocomplete="off"
+    <input class="inp" id="ci" placeholder="Например: Москва" autocomplete="off" autocapitalize="words" inputmode="text"
       oninput="onTxt(this,'btn-city')" onkeydown="if(event.key==='Enter'&&this.value.trim())beginTest()">
     <button class="btn" id="btn-city" disabled onclick="beginTest()" style="border-color:var(--teal);color:var(--teal);box-shadow:0 0 20px rgba(0,196,140,0.35)">Начать тест →</button>
     <p class="hint">20 вопросов — около 5 минут</p>
@@ -258,7 +262,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
       </div>
       <div style="margin-bottom:22px">
         <div class="payfl">Email для получения PDF</div>
-        <input class="inp" id="emailinp" placeholder="example@mail.ru" type="email" oninput="onEmail(this)">
+        <input class="inp" id="emailinp" placeholder="example@mail.ru" type="email" inputmode="email" autocomplete="email" oninput="onEmail(this)">
       </div>
       <button class="btn-pay" id="btn-pay" disabled onclick="doPay()">💳 Оплатить и получить отчёт →</button>
       <p style="font-size:12px;color:rgba(255,255,255,0.4);text-align:center;margin-top:12px">🔒 Безопасная оплата · ЮКасса · СБП · карты</p>
@@ -329,7 +333,7 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
 
     <!-- Кнопки шаринга — яркие -->
     <div class="share-btns" style="display:flex;gap:10px;width:100%">
-      <button onclick="shareVK()" style="flex:1;padding:14px 8px;background:rgba(72,116,255,0.12);border:2.5px solid #4874ff;border-radius:14px;cursor:pointer;color:#7fa3ff;font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(72,116,255,0.25)">ВК</button>
+      <button onclick="shareVK()" style="flex:1;padding:14px 8px;min-height:50px;background:rgba(72,116,255,0.12);border:2.5px solid #4874ff;border-radius:14px;cursor:pointer;color:#7fa3ff;font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(72,116,255,0.25)">ВК</button>
       <button onclick="shareTG()" style="flex:1;padding:14px 8px;background:rgba(0,198,255,0.12);border:2.5px solid var(--a2);border-radius:14px;cursor:pointer;color:var(--a2);font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(0,198,255,0.25)">Telegram</button>
       <button onclick="shareWA()" style="flex:1;padding:14px 8px;background:rgba(0,230,118,0.1);border:2.5px solid var(--green);border-radius:14px;cursor:pointer;color:var(--green);font-size:13px;font-weight:800;font-family:Space Grotesk,sans-serif;transition:all .2s;box-shadow:0 0 14px rgba(0,230,118,0.22)">WhatsApp</button>
     </div>
@@ -338,6 +342,22 @@ h2.stitle{font-family:'Manrope',sans-serif;font-size:24px;font-weight:800;text-a
 </div>
 
 <script>
+// ===== ПРОВЕРКА ВОЗВРАТА С ЮКАССЫ =====
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success' || window.location.href.indexOf('s-thanks') > -1) {
+    // Показываем экран благодарности если вернулись с оплаты
+    document.addEventListener('DOMContentLoaded', function() {
+      var email = localStorage.getItem('pt_email') || '';
+      if (email) {
+        var el = document.getElementById('tei');
+        if (el) el.textContent = email;
+      }
+      showScreen('s-thanks');
+    });
+  }
+})();
+
 // ===== ДАННЫЕ =====
 const TYPE_INFO = {
   R:{name:"Реалист",emoji:"🐻",color:"#FF6B35",glow:"rgba(255,107,53,0.4)",desc:"Ты думаешь руками — лучшие идеи приходят когда что-то делаешь. Не теоретик, а практик: пока другие обсуждают, ты уже пробуешь."},
@@ -384,6 +404,8 @@ function pickGender(g) {
   f.style.background = g==='female' ? 'rgba(255,107,157,0.26)' : 'rgba(255,107,157,0.12)';
   f.style.boxShadow  = g==='female' ? '0 0 30px rgba(255,107,157,0.65)' : '0 0 16px rgba(255,107,157,0.28)';
   document.getElementById('btn-gender').disabled = false;
+  // Автопереход через 400мс
+  setTimeout(function(){ showScreen('s-grade'); }, 400);
 }
 
 // ===== КЛАССЫ =====
@@ -399,6 +421,8 @@ function initGrades() {
       document.querySelectorAll('.gbtn').forEach(function(x){x.style.background=x.style.borderColor+'1A';x.style.boxShadow='0 0 12px '+x.style.borderColor+'44';x.style.transform='scale(1)';});
       b.style.background = c+'33'; b.style.boxShadow = '0 0 26px '+c+'99'; b.style.transform = 'scale(1.1)';
       document.getElementById('btn-grade').disabled = false;
+      // Автопереход через 400мс
+      setTimeout(function(){ showScreen('s-city'); }, 400);
     };
     row.appendChild(b);
   });
@@ -537,7 +561,8 @@ function doPay() {
     }
   };
 
-  fetch('https://proftest-podrostki.ru/api/create-payment', {
+  localStorage.setItem('pt_email', email);
+  fetch('http://45.146.167.237:8080/api/create-payment', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(userPayload)
@@ -632,8 +657,9 @@ function shareWA() {
   function resize() { cv.width = window.innerWidth; cv.height = window.innerHeight; }
   resize(); window.addEventListener('resize', resize);
   var COLS = ['123,97,255','0,198,255','0,196,140','255,184,0','255,107,157'];
+  var isMobile = window.innerWidth < 600;
   var flies = [];
-  for (var i=0;i<70;i++) flies.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.8+.4,a:Math.random()*Math.PI*2,sp:Math.random()*.014+.004,c:COLS[Math.floor(Math.random()*COLS.length)]});
+  for (var i=0;i<(isMobile?35:70);i++) flies.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.8+.4,a:Math.random()*Math.PI*2,sp:Math.random()*.014+.004,c:COLS[Math.floor(Math.random()*COLS.length)]});
   function draw() {
     ctx.clearRect(0,0,cv.width,cv.height);
     flies.forEach(function(f) {
